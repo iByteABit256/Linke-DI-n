@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema Linke[DI]n
+-- Schema linkeDIn
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema Linke[DI]n
+-- Schema linkeDIn
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `Linke[DI]n` DEFAULT CHARACTER SET utf8 ;
-USE `Linke[DI]n` ;
+CREATE SCHEMA IF NOT EXISTS `linkeDIn` DEFAULT CHARACTER SET utf8 ;
+USE `linkeDIn` ;
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Information Page`
+-- Table `linkeDIn`.`Information Page`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Information Page` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Information Page` (
   `idInformation Page` INT NOT NULL,
   `bio` LONGTEXT NULL,
   `work_experience` MEDIUMTEXT NULL,
@@ -29,9 +29,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`User`
+-- Table `linkeDIn`.`User`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`User` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`User` (
   `idUser` INT NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
@@ -47,9 +47,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Proffessional`
+-- Table `linkeDIn`.`Proffessional`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Proffessional` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Proffessional` (
   `idProffessional` INT NOT NULL,
   `Information Page_idInformation Page` INT NOT NULL,
   `User_idUser` INT NOT NULL,
@@ -58,37 +58,37 @@ CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Proffessional` (
   INDEX `fk_Proffessional_User1_idx` (`User_idUser` ASC) VISIBLE,
   CONSTRAINT `fk_Proffessional_Information Page1`
     FOREIGN KEY (`Information Page_idInformation Page`)
-    REFERENCES `Linke[DI]n`.`Information Page` (`idInformation Page`)
+    REFERENCES `linkeDIn`.`Information Page` (`idInformation Page`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Proffessional_User1`
     FOREIGN KEY (`User_idUser`)
-    REFERENCES `Linke[DI]n`.`User` (`idUser`)
+    REFERENCES `linkeDIn`.`User` (`idUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Moderator`
+-- Table `linkeDIn`.`Moderator`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Moderator` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Moderator` (
   `idModerator` INT NOT NULL,
   `User_idUser` INT NOT NULL,
   PRIMARY KEY (`idModerator`),
   INDEX `fk_Moderator_User1_idx` (`User_idUser` ASC) VISIBLE,
   CONSTRAINT `fk_Moderator_User1`
     FOREIGN KEY (`User_idUser`)
-    REFERENCES `Linke[DI]n`.`User` (`idUser`)
+    REFERENCES `linkeDIn`.`User` (`idUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Moderator_moderates_Proffessional`
+-- Table `linkeDIn`.`Moderator_moderates_Proffessional`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Moderator_moderates_Proffessional` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Moderator_moderates_Proffessional` (
   `Moderator_idModerator` INT NOT NULL,
   `Proffessional_idProffessional` INT NOT NULL,
   PRIMARY KEY (`Moderator_idModerator`, `Proffessional_idProffessional`),
@@ -96,21 +96,21 @@ CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Moderator_moderates_Proffessional` (
   INDEX `fk_Moderator_has_Proffessional_Moderator_idx` (`Moderator_idModerator` ASC) VISIBLE,
   CONSTRAINT `fk_Moderator_has_Proffessional_Moderator`
     FOREIGN KEY (`Moderator_idModerator`)
-    REFERENCES `Linke[DI]n`.`Moderator` (`idModerator`)
+    REFERENCES `linkeDIn`.`Moderator` (`idModerator`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Moderator_has_Proffessional_Proffessional1`
     FOREIGN KEY (`Proffessional_idProffessional`)
-    REFERENCES `Linke[DI]n`.`Proffessional` (`idProffessional`)
+    REFERENCES `linkeDIn`.`Proffessional` (`idProffessional`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Post`
+-- Table `linkeDIn`.`Post`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Post` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Post` (
   `idPost` INT NOT NULL,
   `Proffessional_idProffessional` INT NOT NULL,
   `title` TINYTEXT NOT NULL,
@@ -119,16 +119,16 @@ CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Post` (
   PRIMARY KEY (`idPost`),
   CONSTRAINT `fk_Post_Proffessional1`
     FOREIGN KEY (`Proffessional_idProffessional`)
-    REFERENCES `Linke[DI]n`.`Proffessional` (`idProffessional`)
+    REFERENCES `linkeDIn`.`Proffessional` (`idProffessional`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Job_Offer`
+-- Table `linkeDIn`.`Job_Offer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Job_Offer` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Job_Offer` (
   `idJob_Offer` INT NOT NULL,
   `Proffessional_idProffessional` INT NOT NULL,
   `title` TINYTEXT NOT NULL,
@@ -137,37 +137,37 @@ CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Job_Offer` (
   PRIMARY KEY (`idJob_Offer`),
   CONSTRAINT `fk_Job Offer_Proffessional1`
     FOREIGN KEY (`Proffessional_idProffessional`)
-    REFERENCES `Linke[DI]n`.`Proffessional` (`idProffessional`)
+    REFERENCES `linkeDIn`.`Proffessional` (`idProffessional`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Interest_Declaration`
+-- Table `linkeDIn`.`Interest_Declaration`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Interest_Declaration` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Interest_Declaration` (
   `Proffessional_idProffessional` INT NOT NULL,
   `Post_idPost` INT NOT NULL,
   INDEX `fk_Interest_Declaration_Proffessional1_idx` (`Proffessional_idProffessional` ASC) VISIBLE,
   PRIMARY KEY (`Proffessional_idProffessional`, `Post_idPost`),
   CONSTRAINT `fk_Interest_Declaration_Proffessional1`
     FOREIGN KEY (`Proffessional_idProffessional`)
-    REFERENCES `Linke[DI]n`.`Proffessional` (`idProffessional`)
+    REFERENCES `linkeDIn`.`Proffessional` (`idProffessional`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Interest_Declaration_Post1`
     FOREIGN KEY (`Post_idPost`)
-    REFERENCES `Linke[DI]n`.`Post` (`idPost`)
+    REFERENCES `linkeDIn`.`Post` (`idPost`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Connected`
+-- Table `linkeDIn`.`Connected`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Connected` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Connected` (
   `Proffessional_idProffessional1` INT NOT NULL,
   `Proffessional_idProffessional2` INT NOT NULL,
   PRIMARY KEY (`Proffessional_idProffessional1`, `Proffessional_idProffessional2`),
@@ -175,42 +175,42 @@ CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Connected` (
   INDEX `fk_Proffessional_has_Proffessional_Proffessional1_idx` (`Proffessional_idProffessional1` ASC) VISIBLE,
   CONSTRAINT `fk_Proffessional_has_Proffessional_Proffessional1`
     FOREIGN KEY (`Proffessional_idProffessional1`)
-    REFERENCES `Linke[DI]n`.`Proffessional` (`idProffessional`)
+    REFERENCES `linkeDIn`.`Proffessional` (`idProffessional`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Proffessional_has_Proffessional_Proffessional2`
     FOREIGN KEY (`Proffessional_idProffessional2`)
-    REFERENCES `Linke[DI]n`.`Proffessional` (`idProffessional`)
+    REFERENCES `linkeDIn`.`Proffessional` (`idProffessional`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Comment`
+-- Table `linkeDIn`.`Comment`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Comment` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Comment` (
   `Proffessional_idProffessional` INT NOT NULL,
   `Post_idPost` INT NOT NULL,
   PRIMARY KEY (`Proffessional_idProffessional`, `Post_idPost`),
   INDEX `fk_Comment_Post1_idx` (`Post_idPost` ASC) VISIBLE,
   CONSTRAINT `fk_Comment_Proffessional1`
     FOREIGN KEY (`Proffessional_idProffessional`)
-    REFERENCES `Linke[DI]n`.`Proffessional` (`idProffessional`)
+    REFERENCES `linkeDIn`.`Proffessional` (`idProffessional`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Comment_Post1`
     FOREIGN KEY (`Post_idPost`)
-    REFERENCES `Linke[DI]n`.`Post` (`idPost`)
+    REFERENCES `linkeDIn`.`Post` (`idPost`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Picture`
+-- Table `linkeDIn`.`Picture`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Picture` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Picture` (
   `idPictures` INT NOT NULL,
   `picture_dir` TINYTEXT NOT NULL,
   `Post_idPost` INT NOT NULL,
@@ -218,16 +218,16 @@ CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Picture` (
   INDEX `fk_Picture_Post1_idx` (`Post_idPost` ASC) VISIBLE,
   CONSTRAINT `fk_Picture_Post1`
     FOREIGN KEY (`Post_idPost`)
-    REFERENCES `Linke[DI]n`.`Post` (`idPost`)
+    REFERENCES `linkeDIn`.`Post` (`idPost`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Linke[DI]n`.`Video`
+-- Table `linkeDIn`.`Video`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Video` (
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`Video` (
   `idVideo` INT NOT NULL,
   `video_dir` TINYTEXT NOT NULL,
   `Post_idPost` INT NOT NULL,
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `Linke[DI]n`.`Video` (
   INDEX `fk_Video_Post1_idx` (`Post_idPost` ASC) VISIBLE,
   CONSTRAINT `fk_Video_Post1`
     FOREIGN KEY (`Post_idPost`)
-    REFERENCES `Linke[DI]n`.`Post` (`idPost`)
+    REFERENCES `linkeDIn`.`Post` (`idPost`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
