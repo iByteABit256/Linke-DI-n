@@ -2,6 +2,7 @@ package com.project.linkedin.User;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,14 @@ class UserController {
     User newUser(@RequestBody User newUser) {
         return repository.save(newUser);
     }
+
+
+    //login post
+    @PostMapping("/users/authentication-{email}")
+    User newUser(@PathVariable String email) {
+        return repository.save(email);
+    }
+
 
     // Single item
 

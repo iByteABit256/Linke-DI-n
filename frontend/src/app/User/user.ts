@@ -12,7 +12,7 @@ export class User{
         first_name: String, last_name: String, phone_number: String,
         profile_picture_dir: String, settings: String){
 
-        this.id = id;
+        this.id = id;an
         this.email = email;
         this.password = password;
         this.first_name = first_name;
