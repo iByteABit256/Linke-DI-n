@@ -3,15 +3,54 @@
 <!-- TODO: Complete and test sign up forms !-->
 
 <div> 
-    <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" > 
-       <input type = "text" class = "fortextbox" name = "emailid" placeholder = "emailid" 
-          formControlName = "emailid"> 
+    <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+
+      <input type = "text" class = "fortextbox" name = "id" placeholder = "id" 
+          formControlName = "id">
+       <br/>
+
+       <input type = "text" class = "fortextbox" name = "email" placeholder = "email" 
+          formControlName = "email">
        <br/> 
        
-       <input type = "password" class = "fortextbox" name = "passwd" 
-          placeholder = "passwd" formControlName = "passwd"> 
+       <input type = "password" class = "fortextbox" name = "password"
+          placeholder = "password" formControlName = "password">
+       <br/>
+
+       <input type = "text" class = "fortextbox" name = "first_name" placeholder = "first_name" 
+          formControlName = "first_name">
+       <br/>
+
+       <input type = "text" class = "fortextbox" name = "last_name" placeholder = "last_name" 
+          formControlName = "last_name">
+       <br/>
+
+       <input type = "text" class = "fortextbox" name = "phone_number" placeholder = "phone_number" 
+          formControlName = "phone_number">
+       <br/>
+
+       <input type = "text" class = "fortextbox" name = "profile_picture_dir" placeholder = "profile_picture_dir" 
+          formControlName = "profile_picture_dir">
+       <br/>
+
+       <input type = "text" class = "fortextbox" name = "settings" placeholder = "settings" 
+          formControlName = "settings">
        <br/>
        
-       <input type = "submit" class = "forsubmit" value = "Log In"> 
+       <input type = "submit" class = "forsubmit" value = "Sign Up">
+
     </form>
  </div>
+
+<!--
+
+id: new FormControl("00100134"),
+email: new FormControl("myemail@domain.com"),
+password: new FormControl("!securePassword!"),
+first_name: new FormControl("John"),
+last_name: new FormControl("Black"),
+phone_number: new FormControl("2130929394"),
+profile_picture_dir: new FormControl("Your pretty face"),
+settings: new FormControl("mysettings.conf")
+
+!-->
