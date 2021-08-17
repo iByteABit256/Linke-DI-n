@@ -28,10 +28,10 @@ class UserController {
 
 
     //login post
-    @PostMapping("/users/authentication-{email}")
-    User newUser(@PathVariable String email) {
-        return repository.save(email);
-    }
+//    @PostMapping("/users/authentication-{email}")
+//    User newUser(@PathVariable String email) {
+//        return repository.save(email);
+//    }
 
 
     // Single item
