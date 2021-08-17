@@ -11,7 +11,7 @@ export class User{
     constructor(/*id: Number, */email: String, password: String,
         first_name: String, last_name: String, phone_number: String,
         profile_picture_dir: String, settings: String){
-
+            
         //this.id = id;
         this.email = email;
         this.password = password;
