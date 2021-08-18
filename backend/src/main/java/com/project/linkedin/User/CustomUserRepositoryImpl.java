@@ -22,4 +22,10 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
         return query.getResultList();
 
     }
+    public List<User> getEmailLike(String email) {
+        Query query = entityManager.createQuery("SELECT e FROM User e WHERE e.email LIKE ?1");
+        query.setParameter(1, "%" + email + "%");
+        return query.getResultList();
+
+    }
 }

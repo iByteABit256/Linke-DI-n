@@ -2,6 +2,7 @@ package com.project.linkedin.User;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Query;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
@@ -27,11 +28,11 @@ class UserController {
     }
 
 
-    //login post
-//    @PostMapping("/users/authentication-{email}")
-//    User newUser(@PathVariable String email) {
-//        return repository.save(email);
-//    }
+    // login get
+    @GetMapping("/users/authentication-{email}")
+    List<User> loginUser(@PathVariable String email) {
+        return repository.getEmailLike(email);
+    }
 
 
     // Single item
