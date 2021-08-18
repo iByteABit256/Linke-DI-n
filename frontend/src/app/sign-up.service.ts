@@ -16,14 +16,6 @@ export class SignUpService {
   constructor(private http: HttpClient) { }
   SignUp(user: User){
     console.log("Signing up user with email: " + user.email);
-    return this.http.post<Article>(this.backend_url, user, {'headers': httpOptions}).subscribe(data => {
-      console.log("Response ID: " + data.id);
-      console.log("Response Title: " + data.title);
-    })
+    return this.http.post(this.backend_url, user, {'headers': httpOptions})
   }
-}
-
-interface Article {
-  id: number;
-  title: string;
 }
