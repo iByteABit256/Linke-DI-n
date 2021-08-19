@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface CustomUserRepository {
     List<User> getNameLike(String firstName);
-    List<User> getEmailLike(String email);
+    User getEmailLike(String email);
 }

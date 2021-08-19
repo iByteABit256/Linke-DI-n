@@ -16,8 +16,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
   Login(email: String){
     console.log("Searching user with email: " + email);
-    return this.http.get(this.backend_url+email, {'headers': httpOptions}).subscribe(data => {
-      console.log(data);
-    })
+    return this.http.get<User>(this.backend_url+email, {'headers': httpOptions});
   }
 }

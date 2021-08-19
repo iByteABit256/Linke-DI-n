@@ -30,7 +30,7 @@ class UserController {
 
     // login get
     @GetMapping("/users/authentication-{email}")
-    List<User> loginUser(@PathVariable String email) {
+    User loginUser(@PathVariable String email) {
         return repository.getEmailLike(email);
     }
 

@@ -25,8 +25,13 @@ export class LoginPageComponent implements OnInit {
   }
 
   onClickSubmit(data: any) {
-    this.loginService.Login(data.email);
-    console.log("Logged in user with email: " + data.email + " and password: " + data.password);
+    this.loginService.Login(data.email).subscribe(response => {
+      if(data.password == response.password){
+        console.log("Logged in user with email: " + data.email + " and password: " + data.password);
+      }else{
+        console.log("Incorrect credentials, try again!");
+      }
+    });
   }
 
 }
