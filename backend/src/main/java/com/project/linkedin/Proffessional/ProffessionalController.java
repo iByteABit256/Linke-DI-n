@@ -1,7 +1,5 @@
 package com.project.linkedin.Proffessional;
 
-
-import com.project.linkedin.User.User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Query;
