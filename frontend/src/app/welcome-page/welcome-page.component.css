@@ -1,0 +1,13 @@
+.grid-container {
+    display: grid;
+    grid-template-areas: "sign-up  login";
+    grid-template-columns: auto auto;
+    margin-left: 540px;
+ }
+ 
+  app-sign-up-page { grid-area: sign-up}
+  app-login-page { grid-area: login}
+
+  h1 {
+      text-align: center;
+  }

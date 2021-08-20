@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { User } from '../User/user';
 import { LoginService } from '../login.service';
 
 @Component({
@@ -11,22 +11,27 @@ import { LoginService } from '../login.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private router: Router, private acRouter: ActivatedRoute,  private loginService: LoginService) { }
 
   formdata: any;
-  user: any;
-  response = [];
+  return: string = '';
 
   ngOnInit() { 
     this.formdata = new FormGroup({ 
         email: new FormControl("myemail@domain.com"),
         password: new FormControl("!securePassword!"),
-    }); 
+    });
+
+    this.acRouter.queryParams.subscribe((params: any) => this.return = params['return'] || '/profHomepage');
   }
 
   onClickSubmit(data: any) {
     this.loginService.Login(data.email).subscribe(response => {
-      if(data.password == response.password){
+
+      this.loginService.isValid = (data.password == response.password);
+      this.router.navigateByUrl(this.return);
+
+      if(this.loginService.isValid){
         console.log("Logged in user with email: " + data.email + " and password: " + data.password);
       }else{
         console.log("Incorrect credentials, try again!");

@@ -16,11 +16,9 @@ export class SignUpPageComponent implements OnInit {
   constructor(private signUpService: SignUpService) { }
 
   user: any;
-  response = [];
 
   ngOnInit() { 
     this.formdata = new FormGroup({ 
-        //id: new FormControl("00100134"),
         email: new FormControl("myemail@domain.com"),
         password: new FormControl("!securePassword!"),
         first_name: new FormControl("John"),
@@ -32,9 +30,11 @@ export class SignUpPageComponent implements OnInit {
   }
 
   onClickSubmit(data: any) {
-    this.user = new User(/*data.id, */data.email, data.password,
+    this.user = new User(data.email, data.password,
       data.first_name, data.last_name, data.phone_number,
       data.profile_picture_dir, data.settings);
+
+    //TODO: check if email exists
 
     this.signUpService.SignUp(this.user);
   }

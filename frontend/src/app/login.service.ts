@@ -13,6 +13,8 @@ const httpOptions = new HttpHeaders()
 })
 export class LoginService {
   private backend_url = "http://localhost:8080/users/authentication-"
+  isValid = false;
+
   constructor(private http: HttpClient) { }
   Login(email: String){
     console.log("Searching user with email: " + email);
