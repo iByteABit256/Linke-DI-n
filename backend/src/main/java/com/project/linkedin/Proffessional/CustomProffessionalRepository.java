@@ -1,6 +1,6 @@
 package com.project.linkedin.Proffessional;
 
-import com.project.linkedin.User.User;
+
 
 import java.util.List;
 
