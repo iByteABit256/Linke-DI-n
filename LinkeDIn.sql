@@ -24,7 +24,7 @@ USE `linkeDIn` ;
 DROP TABLE IF EXISTS `linkeDIn`.`Information Page` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Information Page` (
-  `idInformation Page` INT NOT NULL AUTO_INCREMENT,
+  `idInformation Page` BIGINT NOT NULL AUTO_INCREMENT,
   `bio` LONGTEXT NULL,
   `work_experience` MEDIUMTEXT NULL,
   PRIMARY KEY (`idInformation Page`))
@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`User` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`User` (
-  `idUser` INT NOT NULL AUTO_INCREMENT,
+  `idUser` BIGINT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `first_name` VARCHAR(45) NOT NULL,
@@ -57,9 +57,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Proffessional` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Proffessional` (
-  `idProffessional` INT NOT NULL AUTO_INCREMENT,
-  `Information Page_idInformation Page` INT NOT NULL,
-  `User_idUser` INT NOT NULL,
+  `idProffessional` BIGINT NOT NULL AUTO_INCREMENT,
+  `Information Page_idInformation Page` BIGINT NOT NULL,
+  `User_idUser` BIGINT NOT NULL,
   PRIMARY KEY (`idProffessional`),
   INDEX `fk_Proffessional_Information Page1_idx` (`Information Page_idInformation Page` ASC) VISIBLE,
   INDEX `fk_Proffessional_User1_idx` (`User_idUser` ASC) VISIBLE,
@@ -82,8 +82,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Moderator` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Moderator` (
-  `idModerator` INT NOT NULL AUTO_INCREMENT,
-  `User_idUser` INT NOT NULL,
+  `idModerator` BIGINT NOT NULL AUTO_INCREMENT,
+  `User_idUser` BIGINT NOT NULL,
   PRIMARY KEY (`idModerator`),
   INDEX `fk_Moderator_User1_idx` (`User_idUser` ASC) VISIBLE,
   CONSTRAINT `fk_Moderator_User1`
@@ -100,8 +100,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Moderator_moderates_Proffessional` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Moderator_moderates_Proffessional` (
-  `Moderator_idModerator` INT NOT NULL,
-  `Proffessional_idProffessional` INT NOT NULL,
+  `Moderator_idModerator` BIGINT NOT NULL,
+  `Proffessional_idProffessional` BIGINT NOT NULL,
   PRIMARY KEY (`Moderator_idModerator`, `Proffessional_idProffessional`),
   INDEX `fk_Moderator_has_Proffessional_Proffessional1_idx` (`Proffessional_idProffessional` ASC) VISIBLE,
   INDEX `fk_Moderator_has_Proffessional_Moderator_idx` (`Moderator_idModerator` ASC) VISIBLE,
@@ -124,8 +124,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Post` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Post` (
-  `idPost` INT NOT NULL AUTO_INCREMENT,
-  `Proffessional_idProffessional` INT NOT NULL,
+  `idPost` BIGINT NOT NULL AUTO_INCREMENT,
+  `Proffessional_idProffessional` BIGINT NOT NULL,
   `title` TINYTEXT NOT NULL,
   `body` LONGTEXT NULL,
   INDEX `fk_Post_Proffessional1_idx` (`Proffessional_idProffessional` ASC) VISIBLE,
@@ -144,8 +144,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Job_Offer` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Job_Offer` (
-  `idJob_Offer` INT NOT NULL AUTO_INCREMENT,
-  `Proffessional_idProffessional` INT NOT NULL,
+  `idJob_Offer` BIGINT NOT NULL AUTO_INCREMENT,
+  `Proffessional_idProffessional` BIGINT NOT NULL,
   `title` TINYTEXT NOT NULL,
   `body` LONGTEXT NULL,
   INDEX `fk_Job Offer_Proffessional1_idx` (`Proffessional_idProffessional` ASC) VISIBLE,
@@ -164,8 +164,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Interest_Declaration` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Interest_Declaration` (
-  `Proffessional_idProffessional` INT NOT NULL,
-  `Post_idPost` INT NOT NULL,
+  `Proffessional_idProffessional` BIGINT NOT NULL,
+  `Post_idPost` BIGINT NOT NULL,
   INDEX `fk_Interest_Declaration_Proffessional1_idx` (`Proffessional_idProffessional` ASC) VISIBLE,
   PRIMARY KEY (`Proffessional_idProffessional`, `Post_idPost`),
   CONSTRAINT `fk_Interest_Declaration_Proffessional1`
@@ -187,8 +187,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Connected` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Connected` (
-  `Proffessional_idProffessional1` INT NOT NULL,
-  `Proffessional_idProffessional2` INT NOT NULL,
+  `Proffessional_idProffessional1` BIGINT NOT NULL,
+  `Proffessional_idProffessional2` BIGINT NOT NULL,
   PRIMARY KEY (`Proffessional_idProffessional1`, `Proffessional_idProffessional2`),
   INDEX `fk_Proffessional_has_Proffessional_Proffessional2_idx` (`Proffessional_idProffessional2` ASC) VISIBLE,
   INDEX `fk_Proffessional_has_Proffessional_Proffessional1_idx` (`Proffessional_idProffessional1` ASC) VISIBLE,
@@ -211,8 +211,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Comment` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Comment` (
-  `Proffessional_idProffessional` INT NOT NULL,
-  `Post_idPost` INT NOT NULL,
+  `Proffessional_idProffessional` BIGINT NOT NULL,
+  `Post_idPost` BIGINT NOT NULL,
   PRIMARY KEY (`Proffessional_idProffessional`, `Post_idPost`),
   INDEX `fk_Comment_Post1_idx` (`Post_idPost` ASC) VISIBLE,
   CONSTRAINT `fk_Comment_Proffessional1`
@@ -234,9 +234,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Picture` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Picture` (
-  `idPictures` INT NOT NULL AUTO_INCREMENT,
+  `idPictures` BIGINT NOT NULL AUTO_INCREMENT,
   `picture_dir` TINYTEXT NOT NULL,
-  `Post_idPost` INT NOT NULL,
+  `Post_idPost` BIGINT NOT NULL,
   PRIMARY KEY (`idPictures`),
   INDEX `fk_Picture_Post1_idx` (`Post_idPost` ASC) VISIBLE,
   CONSTRAINT `fk_Picture_Post1`
@@ -253,9 +253,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Video` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Video` (
-  `idVideo` INT NOT NULL AUTO_INCREMENT,
+  `idVideo` BIGINT NOT NULL AUTO_INCREMENT,
   `video_dir` TINYTEXT NOT NULL,
-  `Post_idPost` INT NOT NULL,
+  `Post_idPost` BIGINT NOT NULL,
   PRIMARY KEY (`idVideo`),
   INDEX `fk_Video_Post1_idx` (`Post_idPost` ASC) VISIBLE,
   CONSTRAINT `fk_Video_Post1`

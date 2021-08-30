@@ -1,5 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
 body{
-    background-color: lightblue;
+    background-color: #3f2c79;
+    color: #a3c53e;
+    font-family: "Helvetica", "Verdana", "Arial", "Times New Roman", Times, serif;
+}
+
+h1{
+    color: #a3c53e;
+    font-family: "Helvetica", "Verdana", "Arial", "Times New Roman", Times, serif;
+}
+
+h2{
+    color: #a3c53e;
+    font-family: "Helvetica", "Verdana", "Arial", "Times New Roman", Times, serif;
+}
+
+h3{
+    color: #a3c53e;
+    font-family: "Helvetica", "Verdana", "Arial", "Times New Roman", Times, serif;
+}
+
+.fortextbox{
+    color: #272727;
+    font-family: "Helvetica", "Verdana", "Arial", "Times New Roman", Times, serif;
+}
+
+.topnav{
+    color: #a3c53e;
+    font-family: "Helvetica", "Verdana", "Arial", "Times New Roman", Times, serif;
 }
