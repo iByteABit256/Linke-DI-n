@@ -21,6 +21,34 @@ const routes: Routes = [
     path: 'profHomepage',
     component: ProfHomepageComponent,
     canActivate: [ProffessionalGuard],
+  },
+  {
+    path: 'homepage',
+    component: WelcomePageComponent,
+  },
+  {
+    path: 'network',
+    component: WelcomePageComponent,
+  },
+  {
+    path: 'joboffers',
+    component: WelcomePageComponent,
+  },
+  {
+    path: 'discussions',
+    component: WelcomePageComponent,
+  },
+  {
+    path: 'notifications',
+    component: WelcomePageComponent,
+  },
+  {
+    path: 'personalinfo',
+    component: WelcomePageComponent,
+  },
+  {
+    path: 'settings',
+    component: WelcomePageComponent,
   }
 ];
 
