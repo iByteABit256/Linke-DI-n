@@ -26,6 +26,11 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
         Query query = entityManager.createQuery("SELECT e FROM User e WHERE e.email LIKE ?1");
         query.setParameter(1, "%" + email + "%");
         List<User> list =  query.getResultList();
+
+       if(list.size() == 0){
+           return null;
+       }
+
         return list.get(0);
     }
 }
