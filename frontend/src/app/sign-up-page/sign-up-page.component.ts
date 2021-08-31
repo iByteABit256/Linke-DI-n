@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { SignUpService } from '../sign-up.service';
+import { LoginService } from '../login.service';
 import { User } from '../User/user';
 
 @Component({
@@ -13,9 +14,12 @@ export class SignUpPageComponent implements OnInit {
 
   formdata : any;
 
-  constructor(private signUpService: SignUpService) { }
+  constructor(private signUpService: SignUpService, private loginService: LoginService) { }
 
   user: any;
+
+  errorMessage: any;
+  successMessage: any;
 
   ngOnInit() { 
     this.formdata = new FormGroup({ 
@@ -30,13 +34,20 @@ export class SignUpPageComponent implements OnInit {
   }
 
   onClickSubmit(data: any) {
+    this.errorMessage = "";
+    this.successMessage = "";
+
     this.user = new User(data.email, data.password,
       data.first_name, data.last_name, data.phone_number,
       data.profile_picture_dir, data.settings);
 
-    //TODO: check if email exists
-
-    this.signUpService.SignUp(this.user);
+    this.loginService.Login(data.email).subscribe(response => {
+      if(response){
+        this.errorMessage = "Account with email " + data.email + " already exists."
+      }else{
+        this.signUpService.SignUp(this.user);
+        this.successMessage = "You have successfuly signed up!"
+      }
+    });
   }
-
 }

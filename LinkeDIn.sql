@@ -58,8 +58,8 @@ DROP TABLE IF EXISTS `linkeDIn`.`Proffessional` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Proffessional` (
   `idProffessional` BIGINT NOT NULL AUTO_INCREMENT,
-  `Information Page_idInformation Page` BIGINT NOT NULL,
-  `User_idUser` BIGINT NOT NULL,
+  `Information Page_idInformation Page` BIGINT NOT NULL DEFAULT 1,
+  `User_idUser` BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idProffessional`),
   INDEX `fk_Proffessional_Information Page1_idx` (`Information Page_idInformation Page` ASC) VISIBLE,
   INDEX `fk_Proffessional_User1_idx` (`User_idUser` ASC) VISIBLE,

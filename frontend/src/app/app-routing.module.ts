@@ -6,6 +6,12 @@ import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ProfHomepageComponent } from './prof-homepage/prof-homepage.component';
 import { ProffessionalGuard } from './proffessional.guard';
+import { JobOffersComponent } from './job-offers/job-offers.component';
+import { DiscussionsComponent } from './discussions/discussions.component';
+import { NetworkComponent } from './network/network.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -23,32 +29,28 @@ const routes: Routes = [
     canActivate: [ProffessionalGuard],
   },
   {
-    path: 'homepage',
-    component: WelcomePageComponent,
-  },
-  {
     path: 'network',
-    component: WelcomePageComponent,
+    component: NetworkComponent,
   },
   {
     path: 'joboffers',
-    component: WelcomePageComponent,
+    component: JobOffersComponent,
   },
   {
     path: 'discussions',
-    component: WelcomePageComponent,
+    component: DiscussionsComponent,
   },
   {
     path: 'notifications',
-    component: WelcomePageComponent,
+    component: NotificationsComponent,
   },
   {
     path: 'personalinfo',
-    component: WelcomePageComponent,
+    component: PersonalInfoComponent,
   },
   {
     path: 'settings',
-    component: WelcomePageComponent,
+    component: SettingsComponent,
   }
 ];
 
@@ -57,4 +59,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponent = [SignUpPageComponent, LoginPageComponent, WelcomePageComponent, ProfHomepageComponent];
+export const RoutingComponent = [SignUpPageComponent, LoginPageComponent, WelcomePageComponent, ProfHomepageComponent
+, DiscussionsComponent, NetworkComponent, NotificationsComponent, PersonalInfoComponent, SettingsComponent, JobOffersComponent];

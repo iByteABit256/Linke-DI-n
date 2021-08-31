@@ -6,11 +6,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule, RoutingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignUpService } from './sign-up.service';
+import { NetworkComponent } from './network/network.component';
+import { JobOffersComponent } from './job-offers/job-offers.component';
+import { DiscussionsComponent } from './discussions/discussions.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoutingComponent
+    RoutingComponent,
+    NetworkComponent,
+    JobOffersComponent,
+    DiscussionsComponent,
+    NotificationsComponent,
+    PersonalInfoComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
