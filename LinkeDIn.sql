@@ -83,7 +83,7 @@ DROP TABLE IF EXISTS `linkeDIn`.`Moderator` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Moderator` (
   `idModerator` BIGINT NOT NULL AUTO_INCREMENT,
-  `User_idUser` BIGINT NOT NULL,
+  `User_idUser` BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idModerator`),
   INDEX `fk_Moderator_User1_idx` (`User_idUser` ASC) VISIBLE,
   CONSTRAINT `fk_Moderator_User1`
@@ -100,8 +100,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Moderator_moderates_Proffessional` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Moderator_moderates_Proffessional` (
-  `Moderator_idModerator` BIGINT NOT NULL,
-  `Proffessional_idProffessional` BIGINT NOT NULL,
+  `Moderator_idModerator` BIGINT NOT NULL DEFAULT 1,
+  `Proffessional_idProffessional` BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`Moderator_idModerator`, `Proffessional_idProffessional`),
   INDEX `fk_Moderator_has_Proffessional_Proffessional1_idx` (`Proffessional_idProffessional` ASC) VISIBLE,
   INDEX `fk_Moderator_has_Proffessional_Moderator_idx` (`Moderator_idModerator` ASC) VISIBLE,
@@ -125,7 +125,7 @@ DROP TABLE IF EXISTS `linkeDIn`.`Post` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Post` (
   `idPost` BIGINT NOT NULL AUTO_INCREMENT,
-  `Proffessional_idProffessional` BIGINT NOT NULL,
+  `Proffessional_idProffessional` BIGINT NOT NULL DEFAULT 1,
   `title` TINYTEXT NOT NULL,
   `body` LONGTEXT NULL,
   INDEX `fk_Post_Proffessional1_idx` (`Proffessional_idProffessional` ASC) VISIBLE,
@@ -145,7 +145,7 @@ DROP TABLE IF EXISTS `linkeDIn`.`Job_Offer` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Job_Offer` (
   `idJob_Offer` BIGINT NOT NULL AUTO_INCREMENT,
-  `Proffessional_idProffessional` BIGINT NOT NULL,
+  `Proffessional_idProffessional` BIGINT NOT NULL DEFAULT 1,
   `title` TINYTEXT NOT NULL,
   `body` LONGTEXT NULL,
   INDEX `fk_Job Offer_Proffessional1_idx` (`Proffessional_idProffessional` ASC) VISIBLE,
@@ -164,8 +164,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Interest_Declaration` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Interest_Declaration` (
-  `Proffessional_idProffessional` BIGINT NOT NULL,
-  `Post_idPost` BIGINT NOT NULL,
+  `Proffessional_idProffessional` BIGINT NOT NULL DEFAULT 1,
+  `Post_idPost` BIGINT NOT NULL DEFAULT 1,
   INDEX `fk_Interest_Declaration_Proffessional1_idx` (`Proffessional_idProffessional` ASC) VISIBLE,
   PRIMARY KEY (`Proffessional_idProffessional`, `Post_idPost`),
   CONSTRAINT `fk_Interest_Declaration_Proffessional1`
@@ -187,8 +187,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Connected` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Connected` (
-  `Proffessional_idProffessional1` BIGINT NOT NULL,
-  `Proffessional_idProffessional2` BIGINT NOT NULL,
+  `Proffessional_idProffessional1` BIGINT NOT NULL DEFAULT 1,
+  `Proffessional_idProffessional2` BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`Proffessional_idProffessional1`, `Proffessional_idProffessional2`),
   INDEX `fk_Proffessional_has_Proffessional_Proffessional2_idx` (`Proffessional_idProffessional2` ASC) VISIBLE,
   INDEX `fk_Proffessional_has_Proffessional_Proffessional1_idx` (`Proffessional_idProffessional1` ASC) VISIBLE,
@@ -211,8 +211,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `linkeDIn`.`Comment` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Comment` (
-  `Proffessional_idProffessional` BIGINT NOT NULL,
-  `Post_idPost` BIGINT NOT NULL,
+  `Proffessional_idProffessional` BIGINT NOT NULL DEFAULT 1,
+  `Post_idPost` BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`Proffessional_idProffessional`, `Post_idPost`),
   INDEX `fk_Comment_Post1_idx` (`Post_idPost` ASC) VISIBLE,
   CONSTRAINT `fk_Comment_Proffessional1`
@@ -236,7 +236,7 @@ DROP TABLE IF EXISTS `linkeDIn`.`Picture` ;
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Picture` (
   `idPictures` BIGINT NOT NULL AUTO_INCREMENT,
   `picture_dir` TINYTEXT NOT NULL,
-  `Post_idPost` BIGINT NOT NULL,
+  `Post_idPost` BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idPictures`),
   INDEX `fk_Picture_Post1_idx` (`Post_idPost` ASC) VISIBLE,
   CONSTRAINT `fk_Picture_Post1`
@@ -255,7 +255,7 @@ DROP TABLE IF EXISTS `linkeDIn`.`Video` ;
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Video` (
   `idVideo` BIGINT NOT NULL AUTO_INCREMENT,
   `video_dir` TINYTEXT NOT NULL,
-  `Post_idPost` BIGINT NOT NULL,
+  `Post_idPost` BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idVideo`),
   INDEX `fk_Video_Post1_idx` (`Post_idPost` ASC) VISIBLE,
   CONSTRAINT `fk_Video_Post1`
