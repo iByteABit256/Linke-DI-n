@@ -19,15 +19,15 @@ CREATE SCHEMA IF NOT EXISTS `linkeDIn` DEFAULT CHARACTER SET utf8 ;
 USE `linkeDIn` ;
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`Information Page`
+-- Table `linkeDIn`.`InformationPage`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`Information Page` ;
+DROP TABLE IF EXISTS `linkeDIn`.`InformationPage` ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`Information Page` (
-  `idInformation Page` BIGINT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `linkeDIn`.`InformationPage` (
+  `idInformationPage` BIGINT NOT NULL AUTO_INCREMENT,
   `bio` LONGTEXT NULL,
   `work_experience` MEDIUMTEXT NULL,
-  PRIMARY KEY (`idInformation Page`))
+  PRIMARY KEY (`idInformationPage`))
 ENGINE = InnoDB;
 
 
@@ -58,14 +58,14 @@ DROP TABLE IF EXISTS `linkeDIn`.`Proffessional` ;
 
 CREATE TABLE IF NOT EXISTS `linkeDIn`.`Proffessional` (
   `idProffessional` BIGINT NOT NULL AUTO_INCREMENT,
-  `Information Page_idInformation Page` BIGINT NOT NULL DEFAULT 1,
+  `InformationPage_idInformationPage` BIGINT NOT NULL DEFAULT 1,
   `User_idUser` BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idProffessional`),
-  INDEX `fk_Proffessional_Information Page1_idx` (`Information Page_idInformation Page` ASC) VISIBLE,
+  INDEX `fk_Proffessional_InformationPage1_idx` (`InformationPage_idInformationPage` ASC) VISIBLE,
   INDEX `fk_Proffessional_User1_idx` (`User_idUser` ASC) VISIBLE,
-  CONSTRAINT `fk_Proffessional_Information Page1`
-    FOREIGN KEY (`Information Page_idInformation Page`)
-    REFERENCES `linkeDIn`.`Information Page` (`idInformation Page`)
+  CONSTRAINT `fk_Proffessional_InformationPage1`
+    FOREIGN KEY (`InformationPage_idInformationPage`)
+    REFERENCES `linkeDIn`.`InformationPage` (`idInformationPage`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Proffessional_User1`
