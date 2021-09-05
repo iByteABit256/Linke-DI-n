@@ -10,257 +10,257 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema linkeDIn
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `linkeDIn` ;
+DROP SCHEMA IF EXISTS linkeDIn ;
 
 -- -----------------------------------------------------
 -- Schema linkeDIn
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `linkeDIn` DEFAULT CHARACTER SET utf8 ;
-USE `linkeDIn` ;
+CREATE SCHEMA IF NOT EXISTS linkeDIn DEFAULT CHARACTER SET utf8 ;
+USE linkeDIn ;
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`information_page`
+-- Table linkeDIn.information_page
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`information_page` ;
+DROP TABLE IF EXISTS linkeDIn.information_page ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`information_page` (
-  `id_information_page` BIGINT NOT NULL AUTO_INCREMENT,
-  `bio` LONGTEXT NULL,
-  `work_experience` MEDIUMTEXT NULL,
-  PRIMARY KEY (`id_information_page`))
+CREATE TABLE IF NOT EXISTS linkeDIn.information_page (
+  id_information_page BIGINT NOT NULL AUTO_INCREMENT,
+  bio LONGTEXT NULL,
+  work_experience MEDIUMTEXT NULL,
+  PRIMARY KEY (id_information_page))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`user`
+-- Table linkeDIn.user
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`user` ;
+DROP TABLE IF EXISTS linkeDIn.user ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`user` (
-  `id_user` BIGINT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `first_name` VARCHAR(45) NOT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
-  `phone_number` VARCHAR(45) NOT NULL,
-  `profile_picture_dir` TINYTEXT NOT NULL,
-  `settings` LONGTEXT NOT NULL,
-  PRIMARY KEY (`id_user`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
-  UNIQUE INDEX `phone_number_UNIQUE` (`phone_number` ASC) VISIBLE)
+CREATE TABLE IF NOT EXISTS linkeDIn.user (
+  id_user BIGINT NOT NULL AUTO_INCREMENT,
+  email VARCHAR(45) NOT NULL,
+  password VARCHAR(45) NOT NULL,
+  first_name VARCHAR(45) NOT NULL,
+  last_name VARCHAR(45) NOT NULL,
+  phone_number VARCHAR(45) NOT NULL,
+  profile_picture_dir TINYTEXT NOT NULL,
+  settings LONGTEXT NOT NULL,
+  PRIMARY KEY (id_user),
+  UNIQUE INDEX email_UNIQUE (email ASC) VISIBLE,
+  UNIQUE INDEX phone_number_UNIQUE (phone_number ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`proffessional`
+-- Table linkeDIn.proffessional
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`proffessional` ;
+DROP TABLE IF EXISTS linkeDIn.proffessional ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`proffessional` (
-  `id_proffessional` BIGINT NOT NULL AUTO_INCREMENT,
-  `Information_page_id_information_page` BIGINT NOT NULL DEFAULT 1,
-  `User_id_user` BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id_proffessional`),
-  INDEX `fk_Proffessional_Information_page1_idx` (`Information_page_id_information_page` ASC) VISIBLE,
-  INDEX `fk_Proffessional_User1_idx` (`User_id_user` ASC) VISIBLE,
-  CONSTRAINT `fk_Proffessional_Information_page1`
-    FOREIGN KEY (`Information_page_id_information_page`)
-    REFERENCES `linkeDIn`.`Information_page` (`id_information_page`)
+CREATE TABLE IF NOT EXISTS linkeDIn.proffessional (
+  id_proffessional BIGINT NOT NULL AUTO_INCREMENT,
+  information_page_id BIGINT NOT NULL DEFAULT 1,
+  user_id BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_proffessional),
+  INDEX fk_proffessional_information_page1_idx (information_page_id ASC) VISIBLE,
+  INDEX fk_proffessional_User1_idx (user_id ASC) VISIBLE,
+  CONSTRAINT fk_proffessional_information_page1
+    FOREIGN KEY (information_page_id)
+    REFERENCES linkeDIn.information_page (id_information_page)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Proffessional_User1`
-    FOREIGN KEY (`User_id_user`)
-    REFERENCES `linkeDIn`.`User` (`id_user`)
+  CONSTRAINT fk_proffessional_User1
+    FOREIGN KEY (user_id)
+    REFERENCES linkeDIn.user (id_user)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`moderator`
+-- Table linkeDIn.moderator
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`moderator` ;
+DROP TABLE IF EXISTS linkeDIn.moderator ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`moderator` (
-  `id_moderator` BIGINT NOT NULL AUTO_INCREMENT,
-  `User_id_user` BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id_moderator`),
-  INDEX `fk_Moderator_User1_idx` (`User_id_user` ASC) VISIBLE,
-  CONSTRAINT `fk_Moderator_User1`
-    FOREIGN KEY (`User_id_user`)
-    REFERENCES `linkeDIn`.`User` (`id_user`)
+CREATE TABLE IF NOT EXISTS linkeDIn.moderator (
+  id_moderator BIGINT NOT NULL AUTO_INCREMENT,
+  user_id BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_moderator),
+  INDEX fk_moderator_User1_idx (user_id ASC) VISIBLE,
+  CONSTRAINT fk_moderator_User1
+    FOREIGN KEY (user_id)
+    REFERENCES linkeDIn.User (id_user)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`moderator_moderates_Proffessional`
+-- Table linkeDIn.moderator_moderates_proffessional
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`moderator_moderates_Proffessional` ;
+DROP TABLE IF EXISTS linkeDIn.moderator_moderates_proffessional ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`moderator_moderates_Proffessional` (
-  `Moderator_id_moderator` BIGINT NOT NULL DEFAULT 1,
-  `Proffessional_id_proffessional` BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`Moderator_id_moderator`, `Proffessional_id_proffessional`),
-  INDEX `fk_Moderator_has_Proffessional_Proffessional1_idx` (`Proffessional_id_proffessional` ASC) VISIBLE,
-  INDEX `fk_Moderator_has_Proffessional_Moderator_idx` (`Moderator_id_moderator` ASC) VISIBLE,
-  CONSTRAINT `fk_Moderator_has_Proffessional_Moderator`
-    FOREIGN KEY (`Moderator_id_moderator`)
-    REFERENCES `linkeDIn`.`Moderator` (`id_moderator`)
+CREATE TABLE IF NOT EXISTS linkeDIn.moderator_moderates_proffessional (
+  moderator_id BIGINT NOT NULL DEFAULT 1,
+  proffessional_id BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (moderator_id, proffessional_id),
+  INDEX fk_moderator_has_proffessional_proffessional1_idx (proffessional_id ASC) VISIBLE,
+  INDEX fk_moderator_has_proffessional_moderator_idx (moderator_id ASC) VISIBLE,
+  CONSTRAINT fk_moderator_has_proffessional_moderator
+    FOREIGN KEY (moderator_id)
+    REFERENCES linkeDIn.moderator (id_moderator)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Moderator_has_Proffessional_Proffessional1`
-    FOREIGN KEY (`Proffessional_id_proffessional`)
-    REFERENCES `linkeDIn`.`Proffessional` (`id_proffessional`)
+  CONSTRAINT fk_moderator_has_proffessional_proffessional1
+    FOREIGN KEY (proffessional_id)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`post`
+-- Table linkeDIn.post
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`post` ;
+DROP TABLE IF EXISTS linkeDIn.post ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`post` (
-  `id_post` BIGINT NOT NULL AUTO_INCREMENT,
-  `Proffessional_id_proffessional` BIGINT NOT NULL DEFAULT 1,
-  `title` TINYTEXT NOT NULL,
-  `body` LONGTEXT NULL,
-  INDEX `fk_Post_Proffessional1_idx` (`Proffessional_id_proffessional` ASC) VISIBLE,
-  PRIMARY KEY (`id_post`),
-  CONSTRAINT `fk_Post_Proffessional1`
-    FOREIGN KEY (`Proffessional_id_proffessional`)
-    REFERENCES `linkeDIn`.`Proffessional` (`id_proffessional`)
+CREATE TABLE IF NOT EXISTS linkeDIn.post (
+  id_post BIGINT NOT NULL AUTO_INCREMENT,
+  proffessional_id BIGINT NOT NULL DEFAULT 1,
+  title TINYTEXT NOT NULL,
+  body LONGTEXT NULL,
+  INDEX fk_post_proffessional1_idx (proffessional_id ASC) VISIBLE,
+  PRIMARY KEY (id_post),
+  CONSTRAINT fk_post_proffessional1
+    FOREIGN KEY (proffessional_id)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`job_Offer`
+-- Table linkeDIn.job_offer
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`job_Offer` ;
+DROP TABLE IF EXISTS linkeDIn.job_offer ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`job_Offer` (
-  `id_job_Offer` BIGINT NOT NULL AUTO_INCREMENT,
-  `Proffessional_id_proffessional` BIGINT NOT NULL DEFAULT 1,
-  `title` TINYTEXT NOT NULL,
-  `body` LONGTEXT NULL,
-  INDEX `fk_Job Offer_Proffessional1_idx` (`Proffessional_id_proffessional` ASC) VISIBLE,
-  PRIMARY KEY (`id_job_Offer`),
-  CONSTRAINT `fk_Job Offer_Proffessional1`
-    FOREIGN KEY (`Proffessional_id_proffessional`)
-    REFERENCES `linkeDIn`.`Proffessional` (`id_proffessional`)
+CREATE TABLE IF NOT EXISTS linkeDIn.job_offer (
+  id_job_offer BIGINT NOT NULL AUTO_INCREMENT,
+  proffessional_id BIGINT NOT NULL DEFAULT 1,
+  title TINYTEXT NOT NULL,
+  body LONGTEXT NULL,
+  INDEX fk_job_offer_proffessional1_idx (proffessional_id ASC) VISIBLE,
+  PRIMARY KEY (id_job_offer),
+  CONSTRAINT fk_job_offer_proffessional1
+    FOREIGN KEY (proffessional_id)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`interest_Declaration`
+-- Table linkeDIn.interest_declaration
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`interest_Declaration` ;
+DROP TABLE IF EXISTS linkeDIn.interest_declaration ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`interest_Declaration` (
-  `Proffessional_id_proffessional` BIGINT NOT NULL DEFAULT 1,
-  `Post_id_post` BIGINT NOT NULL DEFAULT 1,
-  INDEX `fk_Interest_Declaration_Proffessional1_idx` (`Proffessional_id_proffessional` ASC) VISIBLE,
-  PRIMARY KEY (`Proffessional_id_proffessional`, `Post_id_post`),
-  CONSTRAINT `fk_Interest_Declaration_Proffessional1`
-    FOREIGN KEY (`Proffessional_id_proffessional`)
-    REFERENCES `linkeDIn`.`Proffessional` (`id_proffessional`)
+CREATE TABLE IF NOT EXISTS linkeDIn.interest_declaration (
+  proffessional_id BIGINT NOT NULL DEFAULT 1,
+  post_id BIGINT NOT NULL DEFAULT 1,
+  INDEX fk_interest_declaration_proffessional1_idx (proffessional_id ASC) VISIBLE,
+  PRIMARY KEY (proffessional_id, post_id),
+  CONSTRAINT fk_interest_declaration_proffessional1
+    FOREIGN KEY (proffessional_id)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Interest_Declaration_Post1`
-    FOREIGN KEY (`Post_id_post`)
-    REFERENCES `linkeDIn`.`Post` (`id_post`)
+  CONSTRAINT fk_interest_declaration_post1
+    FOREIGN KEY (post_id)
+    REFERENCES linkeDIn.post (id_post)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`connected`
+-- Table linkeDIn.connected
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`connected` ;
+DROP TABLE IF EXISTS linkeDIn.connected ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`connected` (
-  `Proffessional_id_proffessional1` BIGINT NOT NULL DEFAULT 1,
-  `Proffessional_id_proffessional2` BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`Proffessional_id_proffessional1`, `Proffessional_id_proffessional2`),
-  INDEX `fk_Proffessional_has_Proffessional_Proffessional2_idx` (`Proffessional_id_proffessional2` ASC) VISIBLE,
-  INDEX `fk_Proffessional_has_Proffessional_Proffessional1_idx` (`Proffessional_id_proffessional1` ASC) VISIBLE,
-  CONSTRAINT `fk_Proffessional_has_Proffessional_Proffessional1`
-    FOREIGN KEY (`Proffessional_id_proffessional1`)
-    REFERENCES `linkeDIn`.`Proffessional` (`id_proffessional`)
+CREATE TABLE IF NOT EXISTS linkeDIn.connected (
+  proffessional_id1 BIGINT NOT NULL DEFAULT 1,
+  proffessional_id2 BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (proffessional_id1, proffessional_id2),
+  INDEX fk_proffessional_has_proffessional_proffessional2_idx (proffessional_id2 ASC) VISIBLE,
+  INDEX fk_proffessional_has_proffessional_proffessional1_idx (proffessional_id1 ASC) VISIBLE,
+  CONSTRAINT fk_proffessional_has_proffessional_proffessional1
+    FOREIGN KEY (proffessional_id1)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Proffessional_has_Proffessional_Proffessional2`
-    FOREIGN KEY (`Proffessional_id_proffessional2`)
-    REFERENCES `linkeDIn`.`Proffessional` (`id_proffessional`)
+  CONSTRAINT fk_proffessional_has_proffessional_proffessional2
+    FOREIGN KEY (proffessional_id2)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`comment`
+-- Table linkeDIn.comment
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`comment` ;
+DROP TABLE IF EXISTS linkeDIn.comment ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`comment` (
-  `Proffessional_id_proffessional` BIGINT NOT NULL DEFAULT 1,
-  `Post_id_post` BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`Proffessional_id_proffessional`, `Post_id_post`),
-  INDEX `fk_Comment_Post1_idx` (`Post_id_post` ASC) VISIBLE,
-  CONSTRAINT `fk_Comment_Proffessional1`
-    FOREIGN KEY (`Proffessional_id_proffessional`)
-    REFERENCES `linkeDIn`.`Proffessional` (`id_proffessional`)
+CREATE TABLE IF NOT EXISTS linkeDIn.comment (
+  proffessional_id BIGINT NOT NULL DEFAULT 1,
+  post_id BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (proffessional_id, post_id),
+  INDEX fk_comment_post1_idx (post_id ASC) VISIBLE,
+  CONSTRAINT fk_comment_proffessional1
+    FOREIGN KEY (proffessional_id)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Comment_Post1`
-    FOREIGN KEY (`Post_id_post`)
-    REFERENCES `linkeDIn`.`Post` (`id_post`)
+  CONSTRAINT fk_comment_post1
+    FOREIGN KEY (post_id)
+    REFERENCES linkeDIn.post (id_post)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`picture`
+-- Table linkeDIn.picture
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`picture` ;
+DROP TABLE IF EXISTS linkeDIn.picture ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`picture` (
-  `id_pictures` BIGINT NOT NULL AUTO_INCREMENT,
-  `picture_dir` TINYTEXT NOT NULL,
-  `Post_id_post` BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id_pictures`),
-  INDEX `fk_Picture_Post1_idx` (`Post_id_post` ASC) VISIBLE,
-  CONSTRAINT `fk_Picture_Post1`
-    FOREIGN KEY (`Post_id_post`)
-    REFERENCES `linkeDIn`.`Post` (`id_post`)
+CREATE TABLE IF NOT EXISTS linkeDIn.picture (
+  id_picture BIGINT NOT NULL AUTO_INCREMENT,
+  picture_dir TINYTEXT NOT NULL,
+  post_id BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_picture),
+  INDEX fk_picture_post1_idx (post_id ASC) VISIBLE,
+  CONSTRAINT fk_picture_post1
+    FOREIGN KEY (post_id)
+    REFERENCES linkeDIn.post (id_post)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `linkeDIn`.`video`
+-- Table linkeDIn.video
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `linkeDIn`.`video` ;
+DROP TABLE IF EXISTS linkeDIn.video ;
 
-CREATE TABLE IF NOT EXISTS `linkeDIn`.`video` (
-  `id_video` BIGINT NOT NULL AUTO_INCREMENT,
-  `video_dir` TINYTEXT NOT NULL,
-  `Post_id_post` BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id_video`),
-  INDEX `fk_Video_Post1_idx` (`Post_id_post` ASC) VISIBLE,
-  CONSTRAINT `fk_Video_Post1`
-    FOREIGN KEY (`Post_id_post`)
-    REFERENCES `linkeDIn`.`Post` (`id_post`)
+CREATE TABLE IF NOT EXISTS linkeDIn.video (
+  id_video BIGINT NOT NULL AUTO_INCREMENT,
+  video_dir TINYTEXT NOT NULL,
+  post_id BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_video),
+  INDEX fk_video_post1_idx (post_id ASC) VISIBLE,
+  CONSTRAINT fk_video_post1
+    FOREIGN KEY (post_id)
+    REFERENCES linkeDIn.post (id_post)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
