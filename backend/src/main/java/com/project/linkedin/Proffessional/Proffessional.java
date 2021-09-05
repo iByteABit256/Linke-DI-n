@@ -10,16 +10,16 @@ import javax.persistence.*;
 public class Proffessional {
 
     private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long idProffessional;
-    private Long User_idUser;
-    private Long InformationPage_idInformationPage;
+    private Long User_id;
+    private Long InformationPage_id;
 
     public Proffessional() {
     }
 
-    public Proffessional(Long User_idUser, Long InformationPage_idInformationPage) {
+    public Proffessional(Long User_id, Long InformationPage_id) {
 
-        this.User_idUser = User_idUser;
-        this.InformationPage_idInformationPage = InformationPage_idInformationPage;
+        this.User_id = User_id;
+        this.InformationPage_id = InformationPage_id;
 
     }
 
