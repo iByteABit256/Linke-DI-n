@@ -1,5 +1,5 @@
 export class User{
-    //id : Number;
+    user_id : Number;
     email : String;
     password : String;
     first_name : String;
@@ -12,7 +12,7 @@ export class User{
         first_name: String, last_name: String, phone_number: String,
         profile_picture_dir: String, settings: String){
             
-        //this.id = id;
+        this.user_id = 0;
         this.email = email;
         this.password = password;
         this.first_name = first_name;
