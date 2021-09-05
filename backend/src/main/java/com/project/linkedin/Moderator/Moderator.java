@@ -11,15 +11,15 @@ import javax.persistence.*;
 @Entity
 public class Moderator {
 
-    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long ididModerator;
-    private Long User_idUser;
+    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long idModerator;
+    private Long User_id;
 
     public Moderator() {
     }
 
-    public Moderator( Long User_idUser) {
+    public Moderator( Long User_id) {
 
-        this.User_idUser = User_idUser;
+        this.User_id = User_id;
 
     }
 }

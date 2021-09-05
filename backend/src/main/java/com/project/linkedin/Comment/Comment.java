@@ -14,16 +14,16 @@ import javax.persistence.*;
 @IdClass(CommentPK.class)
 public class Comment {
 
-    private @Id  Long Proffessional_idProffessional;
-    private @Id  Long Post_idPost;
+    private @Id  Long Proffessional_id;
+    private @Id  Long Post_id;
 
     public Comment() {
     }
 
-    public Comment(Long Proffessional_idProffessional, Long Post_idPost) {
+    public Comment(Long Proffessional_id, Long Post_id) {
 
-        this.Proffessional_idProffessional = Proffessional_idProffessional;
-        this.Post_idPost = Post_idPost;
+        this.Proffessional_id = Proffessional_id;
+        this.Post_id = Post_id;
 
     }
 

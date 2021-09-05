@@ -11,16 +11,16 @@ import javax.persistence.*;
 public class Post {
 
     private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long idPost;
-    private Long Proffessional_idProffessional;
+    private Long Proffessional_id;
     private String title;
     private String body;
 
     public Post() {
     }
 
-    public Post(Long Proffessional_idProffessional,String title,String  body) {
+    public Post(Long Proffessional_id,String title,String  body) {
 
-        this.Proffessional_idProffessional = Proffessional_idProffessional;
+        this.Proffessional_id = Proffessional_id;
         this.title = title;
         this.body = body;
 
