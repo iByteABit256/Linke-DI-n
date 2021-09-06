@@ -26,17 +26,17 @@ export class SignUpService {
       this.userId = data.user_id;
     });
 
-    this.http.post<informationPage>(this.backend_url+"informationpages", new informationPage("", ""), {'headers': httpOptions}).subscribe(data => {
-      console.log(data);
-      this.informationPageId = data.informationPage_id;
-    });
-
-    //TODO : post request only has proffessional_id for some reason
-
-    this.http.post<proffessional>(this.backend_url+"proffessionals", new proffessional(this.userId, this.informationPageId), {'headers': httpOptions}).subscribe(data => {
-      console.log(this.userId);
-      console.log(this.informationPageId);
-      console.log(data);
-    });
+    // this.http.post<informationPage>(this.backend_url+"informationpages", new informationPage("", ""), {'headers': httpOptions}).subscribe(data => {
+    //   console.log(data);
+    //   this.informationPageId = data.informationPage_id;
+    // });
+    //
+    // //TODO : post request only has proffessional_id for some reason
+    //
+    // this.http.post<proffessional>(this.backend_url+"proffessionals", new proffessional(this.userId, this.informationPageId), {'headers': httpOptions}).subscribe(data => {
+    //   console.log(this.userId);
+    //   console.log(this.informationPageId);
+    //   console.log(data);
+    // });
   }
 }
