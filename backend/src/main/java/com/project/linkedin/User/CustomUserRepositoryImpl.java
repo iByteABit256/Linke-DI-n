@@ -35,3 +35,4 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
        return list.get(0);
     }
 }
+
