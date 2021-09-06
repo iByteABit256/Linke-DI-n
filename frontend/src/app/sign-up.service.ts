@@ -15,27 +15,25 @@ const httpOptions = new HttpHeaders()
 })
 export class SignUpService {
   private backend_url = "http://localhost:8080/"
-  private userId: any;
-  private informationPageId: any;
+  proff: proffessional = new proffessional(-1, -1);
 
   constructor(private http: HttpClient) { }
-  SignUp(user: User){
+  async SignUp(user: User){
     console.log("Signing up user with email: " + user.email);
-    this.http.post<User>(this.backend_url+"users", user, {'headers': httpOptions}).subscribe(data => {
-      console.log(data);
-      this.userId = data.user_id;
+
+    await this.http.post<User>(this.backend_url+"users", user, {'headers': httpOptions})
+    .toPromise()
+    .then(response => {
+      this.proff.id_user = response.id_user;
     });
 
-    this.http.post<informationPage>(this.backend_url+"informationpages", new informationPage("", ""), {'headers': httpOptions}).subscribe(data => {
-      console.log(data);
-      this.informationPageId = data.informationPage_id;
+    await this.http.post<informationPage>(this.backend_url+"informationpages", new informationPage("", ""), {'headers': httpOptions})
+    .toPromise()
+    .then(response => {
+      this.proff.id_information_page = response.id_information_page;
     });
 
-    //TODO : post request only has proffessional_id for some reason
-
-    this.http.post<proffessional>(this.backend_url+"proffessionals", new proffessional(this.userId, this.informationPageId), {'headers': httpOptions}).subscribe(data => {
-      console.log(this.userId);
-      console.log(this.informationPageId);
+    this.http.post<proffessional>(this.backend_url+"proffessionals", this.proff, {'headers': httpOptions}).subscribe(data => {
       console.log(data);
     });
   }

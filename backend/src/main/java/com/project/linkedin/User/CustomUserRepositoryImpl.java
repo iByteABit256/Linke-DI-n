@@ -23,7 +23,8 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
 
     }
     public User getEmailLike(String email) {
-        Query query = entityManager.createQuery("SELECT e FROM User e WHERE e.email = ?1");
+        //TODO: = instead of LIKE
+        Query query = entityManager.createQuery("SELECT e FROM User e WHERE e.email LIKE ?1");
         query.setParameter(1, "%" + email + "%");
         List<User> list =  query.getResultList();
 
@@ -31,6 +32,6 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
            return null;
        }
 
-        return list.get(0);
+       return list.get(0);
     }
 }

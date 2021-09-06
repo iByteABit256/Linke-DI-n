@@ -1,11 +1,11 @@
 export class proffessional{
     proffessional_id: Number;
-    user_id: Number;
-    informationPage_id: Number;
+    id_user: Number;
+    id_information_page: Number;
 
-    constructor(user_id: Number, informationPage_id: Number){
+    constructor(id_user: Number, id_information_page: Number){
         this.proffessional_id = 0;
-        this.user_id = user_id;
-        this.informationPage_id = informationPage_id;
+        this.id_user = id_user;
+        this.id_information_page = id_information_page;
     }
 }

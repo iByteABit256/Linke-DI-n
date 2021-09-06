@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Data
 @Entity
 public class InformationPage {
-    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long idInformationPage;
+    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long id_information_page;
     private String bio;
     private String work_experience;
 

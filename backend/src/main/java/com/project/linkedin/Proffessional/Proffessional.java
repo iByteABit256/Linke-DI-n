@@ -11,8 +11,8 @@ public class Proffessional {
 
 
     private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long idProffessional;
-    private Long User_id;
-    private Long InformationPage_id;
+    private Long id_user;
+    private Long id_information_page;
 
 
     public Proffessional() {
@@ -21,8 +21,8 @@ public class Proffessional {
     public Proffessional(Long User_id, Long InformationPage_id) {
 
 
-        this.User_id = User_id;
-        this.InformationPage_id = InformationPage_id;
+        this.id_user = User_id;
+        this.id_information_page = InformationPage_id;
 
     }
 

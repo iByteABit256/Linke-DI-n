@@ -58,18 +58,18 @@ DROP TABLE IF EXISTS linkeDIn.proffessional ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.proffessional (
   id_proffessional BIGINT NOT NULL AUTO_INCREMENT,
-  information_page_id BIGINT NOT NULL DEFAULT 1,
-  user_id BIGINT NOT NULL DEFAULT 1,
+  id_information_page BIGINT NOT NULL DEFAULT 1,
+  id_user BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_proffessional),
-  INDEX fk_proffessional_information_page1_idx (information_page_id ASC) VISIBLE,
-  INDEX fk_proffessional_User1_idx (user_id ASC) VISIBLE,
+  INDEX fk_proffessional_information_page1_idx (id_information_page ASC) VISIBLE,
+  INDEX fk_proffessional_User1_idx (id_user ASC) VISIBLE,
   CONSTRAINT fk_proffessional_information_page1
-    FOREIGN KEY (information_page_id)
+    FOREIGN KEY (id_information_page)
     REFERENCES linkeDIn.information_page (id_information_page)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_proffessional_User1
-    FOREIGN KEY (user_id)
+    FOREIGN KEY (id_user)
     REFERENCES linkeDIn.user (id_user)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -83,11 +83,11 @@ DROP TABLE IF EXISTS linkeDIn.moderator ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.moderator (
   id_moderator BIGINT NOT NULL AUTO_INCREMENT,
-  user_id BIGINT NOT NULL DEFAULT 1,
+  id_user BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_moderator),
-  INDEX fk_moderator_User1_idx (user_id ASC) VISIBLE,
+  INDEX fk_moderator_User1_idx (id_user ASC) VISIBLE,
   CONSTRAINT fk_moderator_User1
-    FOREIGN KEY (user_id)
+    FOREIGN KEY (id_user)
     REFERENCES linkeDIn.User (id_user)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
