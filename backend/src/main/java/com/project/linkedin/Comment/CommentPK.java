@@ -4,15 +4,15 @@ package com.project.linkedin.Comment;
 import java.io.Serializable;
 
 public class CommentPK implements Serializable {
-    private Long Post_id;
-    private Long Proffessional_id;
+    private Long post_id;
+    private Long proffessional_id;
 
 
     public CommentPK() {}
 
-    public CommentPK( Long Proffessional_id,Long Post_id) {
-        this.Post_id = Post_id;
-        this.Proffessional_id = Proffessional_id;
+    public CommentPK( Long proffessional_id,Long post_id) {
+        this.post_id = post_id;
+        this.proffessional_id = proffessional_id;
     }
 
 //    Long getPostid(){

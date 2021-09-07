@@ -9,17 +9,17 @@ import javax.persistence.*;
 @Entity
 public class Video {
 
-    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long idVideo;
+    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long id_video;
     private String video_dir;
-    private Long Post_id;
+    private Long post_id;
 
     public Video() {
     }
 
-    public Video(String video_dir, Long Post_id) {
+    public Video(String video_dir, Long post_id) {
 
         this.video_dir = video_dir;
-        this.Post_id = Post_id;
+        this.post_id = post_id;
 
     }
 
