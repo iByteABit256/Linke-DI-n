@@ -12,14 +12,14 @@ import javax.persistence.*;
 public class Moderator {
 
     private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long id_moderator;
-    private Long user_id;
+    private Long id_user;
 
     public Moderator() {
     }
 
-    public Moderator( Long user_id) {
+    public Moderator( Long id_user) {
 
-        this.user_id = user_id;
+        this.id_user = id_user;
 
     }
 }

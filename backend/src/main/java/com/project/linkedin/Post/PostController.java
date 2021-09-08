@@ -29,6 +29,12 @@ public class PostController {
         return repository.save(newPost);
     }
 
+    @GetMapping("/posts/user-{id}")
+    List<Post> findposts(@PathVariable Long id) {
+        return repository.finduserposts(id);
+    }
+
+
 
 
     // Single item
