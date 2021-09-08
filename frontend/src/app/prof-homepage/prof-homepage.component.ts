@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDataService} from "../user-data.service";
 
 @Component({
   selector: 'app-prof-homepage',
@@ -8,11 +7,9 @@ import { UserDataService} from "../user-data.service";
 })
 export class ProfHomepageComponent implements OnInit {
 
-  user:any;
-  constructor(private userData : UserDataService) { };
+  constructor() { };
 
   ngOnInit(): void {
-    this.user = this.userData.user;
   }
 
 }

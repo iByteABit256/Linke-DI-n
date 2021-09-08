@@ -12,6 +12,7 @@ import { DiscussionsComponent } from './discussions/discussions.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TopNavBarComponent } from './top-nav-bar/top-nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SettingsComponent } from './settings/settings.component';
     DiscussionsComponent,
     NotificationsComponent,
     PersonalInfoComponent,
-    SettingsComponent
+    SettingsComponent,
+    TopNavBarComponent
   ],
   imports: [
     BrowserModule,

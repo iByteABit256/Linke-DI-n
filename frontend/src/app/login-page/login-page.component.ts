@@ -26,8 +26,6 @@ export class LoginPageComponent implements OnInit {
     this.acRouter.queryParams.subscribe((params: any) => this.return = params['return'] || '/profHomepage');
   }
 
-
-
   onClickSubmit(data: any) {
     this.loginService.Login(data.email).subscribe(response => {
 
@@ -36,11 +34,10 @@ export class LoginPageComponent implements OnInit {
 
       if(this.loginService.isValid){
         console.log("Logged in user with email: " + data.email + " and password: " + data.password);
-        this.userData.user=response;
+        this.userData.setUser(response);
       }else{
         console.log("Incorrect credentials, try again!");
       }
     });
   }
-
 }
