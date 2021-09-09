@@ -1,0 +1,19 @@
+<h3>Create a new post</h3>
+
+<div> 
+    <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+
+       Title <br>
+       <input type = "text" class = "fortextbox" name = "title" placeholder = "Title" 
+          formControlName = "title">
+       <br/><br/> 
+       
+       Body <br>
+       <input type = "text" class = "fortextbox" name = "body"
+          placeholder = "Body" formControlName = "body">
+       <br/><br/> 
+
+       <input type = "submit" class = "forsubmit" value = "Post">
+
+    </form>
+ </div>

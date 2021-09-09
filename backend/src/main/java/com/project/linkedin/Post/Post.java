@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Post {
 
     private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long id_post;
-    private Long proffessional_id;
+    private Long id_proffessional;
     private String title;
     private String body;
     private String dt;
@@ -19,9 +19,9 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long proffessional_id,String title,String  body,String dt) {
+    public Post(Long id_proffessional, String title, String  body, String dt) {
 
-        this.proffessional_id = proffessional_id;
+        this.id_proffessional = id_proffessional;
         this.title = title;
         this.body = body;
         this.dt = dt;

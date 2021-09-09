@@ -13,6 +13,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TopNavBarComponent } from './top-nav-bar/top-nav-bar.component';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TopNavBarComponent } from './top-nav-bar/top-nav-bar.component';
     NotificationsComponent,
     PersonalInfoComponent,
     SettingsComponent,
-    TopNavBarComponent
+    TopNavBarComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,

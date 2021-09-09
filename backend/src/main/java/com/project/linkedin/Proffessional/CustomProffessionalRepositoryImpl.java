@@ -22,13 +22,23 @@ public class CustomProffessionalRepositoryImpl implements CustomProffessionalRep
 //        query.setParameter(1, "%" + firstName + "%");
 //        return query.getResultList();
         return null;
-
     }
     public List<Proffessional> getEmailLike(String email) {
 //        Query query = entityManager.createQuery("SELECT e FROM Proffessional e WHERE e.email LIKE ?1");
 //        query.setParameter(1, "%" + email + "%");
 //        return query.getResultList();
         return null;
+    }
 
+    public Proffessional getProffessionalByUserID(Long ID){
+        Query query = entityManager.createQuery("SELECT p FROM Proffessional p WHERE p.id_user = ?1");
+        query.setParameter(1, ID);
+        List<Proffessional> list = query.getResultList();
+
+        if(list.size() == 0){
+            return null;
+        }
+
+        return list.get(0);
     }
 }

@@ -38,6 +38,12 @@ class ProffessionalController {
         return repository.findById(id).orElseThrow(() -> new ProffessionalNotFoundException(id));
     }
 
+    // Get by user id
+
+    @GetMapping("/proffessionals/user-{id}")
+    Proffessional getByUserID(@PathVariable Long id) {
+        return repository.getProffessionalByUserID(id);
+    }
 
 //    @GetMapping("/proffessionals/{name}")
 //    List<Proffessional> like(@PathVariable String name) {
