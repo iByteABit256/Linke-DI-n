@@ -14,21 +14,23 @@ export class UserDataService {
   user: any;
   loggedIn$!: Observable<boolean>;
   proffessional: proffessional;
-  backend_url: String = "http://localhost:8080/";
+  private backend_url: String = "http://localhost:8080/";
 
   constructor(private http: HttpClient) {
     this.proffessional = new proffessional(0, 0);
     this.setUser(null);
   }
 
-  setUser(user: any){
+  async setUser(user: any){
     this.user = user;
     this.setObservable();
     
     if(user != null){
-      this.http.get<proffessional>(this.backend_url+"proffessionals/user-"+user.id_user, {'headers': httpOptions})
-        .subscribe(proff => {
+      await this.http.get<proffessional>(this.backend_url+"proffessionals/user-"+user.id_user, {'headers': httpOptions})
+        .toPromise()
+        .then(proff => {
           this.proffessional.set(proff.id_proffessional, proff.id_user, proff.id_information_page);
+          console.log(this.proffessional);
         });
     }
   }

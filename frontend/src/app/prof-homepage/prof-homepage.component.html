@@ -1,2 +1,4 @@
 <app-personal-info></app-personal-info>
-<app-posts></app-posts>
+<div *ngIf="loggedIn" class="posts">
+    <app-posts></app-posts>
+</div>

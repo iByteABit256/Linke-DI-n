@@ -15,6 +15,7 @@ export class PostsComponent implements OnInit {
 
   formdata: any;
   post: any;
+  posts: Post[] = new Array();
 
   constructor(private postService: PostService, private userData: UserDataService) { }
 
@@ -22,7 +23,11 @@ export class PostsComponent implements OnInit {
     this.formdata = new FormGroup({ 
       title: new FormControl(""),
       body: new FormControl(""),
-    }); 
+    });
+
+    this.postService.getPosts().subscribe(posts => {
+      this.posts = posts;
+    })
   }
 
   onClickSubmit(data: any) {
