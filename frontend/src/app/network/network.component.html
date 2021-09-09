@@ -1,7 +1,5 @@
-<p>network works!</p>
+<h2>Connected with you:</h2> 
 
-
-<li *ngFor="let lname of fullnames; index as i;even as even">
-  <span *ngIf="even">default</span>
-  <span  *ngIf="even" <h3> Firstname: </h3> {{i}} / <h3> Lastname: </h3> {{i+1}} </span>
+<li *ngFor="let user of fullnames; index as i;">
+    {{user.first_name}} {{user.last_name}}
 </li>

@@ -13,5 +13,4 @@ export class PersonalInfoComponent implements OnInit {
   ngOnInit(): void { }
 
   user: User = this.userData.user;
-
 }
