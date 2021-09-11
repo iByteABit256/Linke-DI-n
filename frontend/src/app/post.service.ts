@@ -22,6 +22,6 @@ export class PostService {
   getPosts(){
     console.log("Getting posts");
 
-    return this.http.get<Post[]>(this.backend_url+"/proffessional-"+this.userData.proffessional.id_proffessional, {'headers': httpOptions});
+    return this.http.get<Post[]>(this.backend_url+"/fullproffessional-"+this.userData.proffessional.id_proffessional, {'headers': httpOptions});
   }
 }
