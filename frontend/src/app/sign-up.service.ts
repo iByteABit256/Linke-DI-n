@@ -4,11 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './User/user'
 import { informationPage } from './InformationPage/informationPage';
 import { proffessional } from './Proffessional/proffessional';
-
-const httpOptions = new HttpHeaders()
-  .set('Accept', 'application/json')
-  .set('content-type', 'application/json')
-  .set('Access-Control-Allow-Origin', '*');
+import { httpOptions } from './httpOptions'
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +34,3 @@ export class SignUpService {
     });
   }
 }
-

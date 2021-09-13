@@ -4,14 +4,14 @@ package com.project.linkedin.Connected;
 import java.io.Serializable;
 
 public class ConnectedPK implements Serializable {
-    private Long Proffessional_id1;
-    private Long Proffessional_id2;
+    private Long id_proffessional1;
+    private Long id_proffessional2;
 
     public ConnectedPK() {}
 
-    public ConnectedPK(Long Proffessional_id1, Long Proffessional_id2) {
-        this.Proffessional_id1 = Proffessional_id1;
-        this.Proffessional_id2 = Proffessional_id2;
+    public ConnectedPK(Long id_proffessional1, Long id_proffessional2) {
+        this.id_proffessional1 = id_proffessional1;
+        this.id_proffessional2 = id_proffessional2;
     }
 
 //    Long getProffessional_idProffessional1(){

@@ -28,11 +28,11 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
         query.setParameter(1, "%" + email + "%");
         List<User> list =  query.getResultList();
 
-       if(list.size() == 0){
-           return null;
-       }
+        if(list.size() == 0){
+            return null;
+        }
 
-       return list.get(0);
+        return list.get(0);
     }
 }
 

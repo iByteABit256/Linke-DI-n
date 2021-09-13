@@ -2,11 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from './User/user'
-
-const httpOptions = new HttpHeaders()
-  .set('Accept', 'application/json')
-  .set('content-type', 'application/json')
-  .set('Access-Control-Allow-Origin', '*');
+import { httpOptions } from './httpOptions';
 
 @Injectable({
   providedIn: 'root'

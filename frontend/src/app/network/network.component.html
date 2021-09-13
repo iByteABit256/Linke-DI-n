@@ -1,1 +1,5 @@
-<p>network works!</p>
+<h2>Connected with you:</h2> 
+
+<li *ngFor="let user of fullnames; index as i;">
+    {{user.first_name}} {{user.last_name}}
+</li>

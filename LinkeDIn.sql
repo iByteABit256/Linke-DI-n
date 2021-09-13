@@ -101,9 +101,9 @@ DROP TABLE IF EXISTS linkeDIn.moderator_moderates_proffessional ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.moderator_moderates_proffessional (
   moderator_id BIGINT NOT NULL DEFAULT 1,
-  proffessional_id BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (moderator_id, proffessional_id),
-  INDEX fk_moderator_has_proffessional_proffessional1_idx (proffessional_id ASC) VISIBLE,
+  id_proffessional BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (moderator_id, id_proffessional),
+  INDEX fk_moderator_has_proffessional_proffessional1_idx (id_proffessional ASC) VISIBLE,
   INDEX fk_moderator_has_proffessional_moderator_idx (moderator_id ASC) VISIBLE,
   CONSTRAINT fk_moderator_has_proffessional_moderator
     FOREIGN KEY (moderator_id)
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS linkeDIn.moderator_moderates_proffessional (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_moderator_has_proffessional_proffessional1
-    FOREIGN KEY (proffessional_id)
+    FOREIGN KEY (id_proffessional)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -125,13 +125,14 @@ DROP TABLE IF EXISTS linkeDIn.post ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.post (
   id_post BIGINT NOT NULL AUTO_INCREMENT,
-  proffessional_id BIGINT NOT NULL DEFAULT 1,
+  id_proffessional BIGINT NOT NULL DEFAULT 1,
   title TINYTEXT NOT NULL,
   body LONGTEXT NULL,
-  INDEX fk_post_proffessional1_idx (proffessional_id ASC) VISIBLE,
+  dt DATETIME NOT NULL,
+  INDEX fk_post_proffessional1_idx (id_proffessional ASC) VISIBLE,
   PRIMARY KEY (id_post),
   CONSTRAINT fk_post_proffessional1
-    FOREIGN KEY (proffessional_id)
+    FOREIGN KEY (id_proffessional)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -145,13 +146,13 @@ DROP TABLE IF EXISTS linkeDIn.job_offer ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.job_offer (
   id_job_offer BIGINT NOT NULL AUTO_INCREMENT,
-  proffessional_id BIGINT NOT NULL DEFAULT 1,
+  id_proffessional BIGINT NOT NULL DEFAULT 1,
   title TINYTEXT NOT NULL,
   body LONGTEXT NULL,
-  INDEX fk_job_offer_proffessional1_idx (proffessional_id ASC) VISIBLE,
+  INDEX fk_job_offer_proffessional1_idx (id_proffessional ASC) VISIBLE,
   PRIMARY KEY (id_job_offer),
   CONSTRAINT fk_job_offer_proffessional1
-    FOREIGN KEY (proffessional_id)
+    FOREIGN KEY (id_proffessional)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -164,12 +165,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS linkeDIn.interest_declaration ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.interest_declaration (
-  proffessional_id BIGINT NOT NULL DEFAULT 1,
+  id_proffessional BIGINT NOT NULL DEFAULT 1,
   post_id BIGINT NOT NULL DEFAULT 1,
-  INDEX fk_interest_declaration_proffessional1_idx (proffessional_id ASC) VISIBLE,
-  PRIMARY KEY (proffessional_id, post_id),
+  INDEX fk_interest_declaration_proffessional1_idx (id_proffessional ASC) VISIBLE,
+  PRIMARY KEY (id_proffessional, post_id),
   CONSTRAINT fk_interest_declaration_proffessional1
-    FOREIGN KEY (proffessional_id)
+    FOREIGN KEY (id_proffessional)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -187,18 +188,18 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS linkeDIn.connected ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.connected (
-  proffessional_id1 BIGINT NOT NULL DEFAULT 1,
-  proffessional_id2 BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (proffessional_id1, proffessional_id2),
-  INDEX fk_proffessional_has_proffessional_proffessional2_idx (proffessional_id2 ASC) VISIBLE,
-  INDEX fk_proffessional_has_proffessional_proffessional1_idx (proffessional_id1 ASC) VISIBLE,
+  id_proffessional1 BIGINT NOT NULL DEFAULT 1,
+  id_proffessional2 BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_proffessional1, id_proffessional2),
+  INDEX fk_proffessional_has_proffessional_proffessional2_idx (id_proffessional2 ASC) VISIBLE,
+  INDEX fk_proffessional_has_proffessional_proffessional1_idx (id_proffessional1 ASC) VISIBLE,
   CONSTRAINT fk_proffessional_has_proffessional_proffessional1
-    FOREIGN KEY (proffessional_id1)
+    FOREIGN KEY (id_proffessional1)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_proffessional_has_proffessional_proffessional2
-    FOREIGN KEY (proffessional_id2)
+    FOREIGN KEY (id_proffessional2)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -211,12 +212,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS linkeDIn.comment ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.comment (
-  proffessional_id BIGINT NOT NULL DEFAULT 1,
+  id_proffessional BIGINT NOT NULL DEFAULT 1,
   post_id BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (proffessional_id, post_id),
+  PRIMARY KEY (id_proffessional, post_id),
   INDEX fk_comment_post1_idx (post_id ASC) VISIBLE,
   CONSTRAINT fk_comment_proffessional1
-    FOREIGN KEY (proffessional_id)
+    FOREIGN KEY (id_proffessional)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,

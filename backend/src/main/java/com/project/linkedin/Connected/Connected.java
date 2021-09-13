@@ -12,17 +12,17 @@ import java.io.Serializable;
 @Entity
 @IdClass(ConnectedPK.class)
 public class Connected implements Serializable {
-    private @Id  Long Proffessional_id1;
-    private @Id  Long Proffessional_id2;
+    private @Id  Long id_proffessional1;
+    private @Id  Long id_proffessional2;
 
 
     public Connected() {
     }
 
-    public Connected(Long Proffessional_id1, Long Proffessional_id2 ) {
+    public Connected(Long id_proffessional1, Long id_proffessional2) {
 
-        this.Proffessional_id1 = Proffessional_id1;
-        this.Proffessional_id2 = Proffessional_id2;
+        this.id_proffessional1 = id_proffessional1;
+        this.id_proffessional2 = id_proffessional2;
 
     }
 }

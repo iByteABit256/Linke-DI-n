@@ -19,10 +19,14 @@ public class CustomConnectedRepositoryImpl implements CustomConnectedRepository{
 
     @Override
     public List<Long> findConnected(Long id) {
-        Query query = entityManager.createNativeQuery("SELECT e.Proffessional_id1 FROM Connected e WHERE e.Proffessional_id2 = ?1"+ "UNION" + "SELECT e.Proffessional_id2 FROM Connected e WHERE e.Proffessional_id1 = ?1" );
-        query.setParameter(1, "%"+id+"%");
-
-        return query.getResultList();
+        Query query1 = entityManager.createQuery("SELECT e.id_proffessional1 FROM Connected e WHERE e.id_proffessional2 = ?1" );
+        query1.setParameter(1, id);
+        Query query2 = entityManager.createQuery("SELECT e.id_proffessional2 FROM Connected e WHERE e.id_proffessional1 = ?1" );
+        query2.setParameter(1, id);
+        List list1 = query1.getResultList();
+        List list2 =  query2.getResultList();
+        list1.addAll(list2);
+        return list1;
 
     }
 

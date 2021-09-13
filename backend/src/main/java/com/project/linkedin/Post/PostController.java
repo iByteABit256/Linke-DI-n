@@ -29,6 +29,15 @@ public class PostController {
         return repository.save(newPost);
     }
 
+    @GetMapping("/posts/proffessional-{id}")
+    List<Post> findposts(@PathVariable Long id) {
+        return repository.finduserposts(id);
+    }
+
+    @GetMapping("/posts/fullproffessional-{id}")
+    List<Post> findallposts(@PathVariable Long id) {
+        return repository.findalluserposts(id);
+    }
 
 
     // Single item

@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Proffessional {
 
 
-    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long idProffessional;
+    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long id_proffessional;
     private Long id_user;
     private Long id_information_page;
 

@@ -1,22 +1,4 @@
-<div class="topnav">
-    <a routerLink = "/homepage">Homepage</a>
-    <a routerLink = "/network">Network</a>
-    <a routerLink = "/joboffers">Job Offers</a>
-    <a routerLink = "/discussions">Discussions</a>
-    <a routerLink = "/notifications">Notifications</a>
-    <a routerLink = "/personalinfo">Personal Info</a>
-    <a routerLink = "/settings">Settings</a>
+<app-personal-info></app-personal-info>
+<div *ngIf="loggedIn" class="posts">
+    <app-posts></app-posts>
 </div>
-
-<p>prof-homepage works!</p>
-
-{{user.email}}
-{{user.first_name}}
-{{user.last_name}}
-{{user.phone_number}}
-{{user.profile_picture_dir}}
-{{user.settings}}
-
-
-
-

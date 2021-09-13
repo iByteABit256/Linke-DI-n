@@ -26,21 +26,20 @@ export class LoginPageComponent implements OnInit {
     this.acRouter.queryParams.subscribe((params: any) => this.return = params['return'] || '/profHomepage');
   }
 
+  async onClickSubmit(data: any) {
+    await this.loginService.Login(data.email)
+      .toPromise()
+      .then(response => {
+        this.loginService.isValid = (data.password == response.password);
 
-
-  onClickSubmit(data: any) {
-    this.loginService.Login(data.email).subscribe(response => {
-
-      this.loginService.isValid = (data.password == response.password);
-      this.router.navigateByUrl(this.return);
-
-      if(this.loginService.isValid){
-        console.log("Logged in user with email: " + data.email + " and password: " + data.password);
-        this.userData.user=response;
-      }else{
-        console.log("Incorrect credentials, try again!");
-      }
-    });
+        if(this.loginService.isValid){
+          console.log("Logged in user with email: " + data.email + " and password: " + data.password);
+          this.userData.setUser(response);
+        }else{
+          console.log("Incorrect credentials, try again!");
+        }
+      });
+    console.log("Routing to homepage")
+    this.router.navigateByUrl(this.return);
   }
-
 }

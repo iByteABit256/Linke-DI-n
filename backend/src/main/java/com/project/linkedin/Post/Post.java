@@ -10,19 +10,21 @@ import javax.persistence.*;
 @Entity
 public class Post {
 
-    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long idPost;
-    private Long Proffessional_id;
+    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long id_post;
+    private Long id_proffessional;
     private String title;
     private String body;
+    private String dt;
 
     public Post() {
     }
 
-    public Post(Long Proffessional_id,String title,String  body) {
+    public Post(Long id_proffessional, String title, String  body, String dt) {
 
-        this.Proffessional_id = Proffessional_id;
+        this.id_proffessional = id_proffessional;
         this.title = title;
         this.body = body;
+        this.dt = dt;
 
     }
 }
