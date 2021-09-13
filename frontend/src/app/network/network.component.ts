@@ -15,7 +15,6 @@ export class NetworkComponent implements OnInit {
   constructor(private uds: UserDataService, private gc : GetConnectedService) { }
 
   ngOnInit(): void {
-    this.gc.getConnected(this.uds.proffessional.id_proffessional);
-    this.fullnames=this.gc.fullnames;
+    this.fullnames = this.gc.getUsers(this.uds.proffessional.id_proffessional);
   }
 }

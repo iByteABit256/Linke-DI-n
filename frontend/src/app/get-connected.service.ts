@@ -38,4 +38,12 @@ export class GetConnectedService {
         })
     }
   }
+
+  getUsers(id: Number): User[]{
+    if(this.fullnames.length == 0){
+      this.getConnected(id);
+    }
+    
+    return this.fullnames;
+  }
 }
