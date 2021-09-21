@@ -166,16 +166,16 @@ DROP TABLE IF EXISTS linkeDIn.interest_declaration ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.interest_declaration (
   id_proffessional BIGINT NOT NULL DEFAULT 1,
-  post_id BIGINT NOT NULL DEFAULT 1,
+  id_post BIGINT NOT NULL DEFAULT 1,
   INDEX fk_interest_declaration_proffessional1_idx (id_proffessional ASC) VISIBLE,
-  PRIMARY KEY (id_proffessional, post_id),
+  PRIMARY KEY (id_proffessional, id_post),
   CONSTRAINT fk_interest_declaration_proffessional1
     FOREIGN KEY (id_proffessional)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_interest_declaration_post1
-    FOREIGN KEY (post_id)
+    FOREIGN KEY (id_post)
     REFERENCES linkeDIn.post (id_post)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -213,16 +213,16 @@ DROP TABLE IF EXISTS linkeDIn.comment ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.comment (
   id_proffessional BIGINT NOT NULL DEFAULT 1,
-  post_id BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (id_proffessional, post_id),
-  INDEX fk_comment_post1_idx (post_id ASC) VISIBLE,
+  id_post BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_proffessional, id_post),
+  INDEX fk_comment_post1_idx (id_post ASC) VISIBLE,
   CONSTRAINT fk_comment_proffessional1
     FOREIGN KEY (id_proffessional)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_comment_post1
-    FOREIGN KEY (post_id)
+    FOREIGN KEY (id_post)
     REFERENCES linkeDIn.post (id_post)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -237,11 +237,11 @@ DROP TABLE IF EXISTS linkeDIn.picture ;
 CREATE TABLE IF NOT EXISTS linkeDIn.picture (
   id_picture BIGINT NOT NULL AUTO_INCREMENT,
   picture_dir TINYTEXT NOT NULL,
-  post_id BIGINT NOT NULL DEFAULT 1,
+  id_post BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_picture),
-  INDEX fk_picture_post1_idx (post_id ASC) VISIBLE,
+  INDEX fk_picture_post1_idx (id_post ASC) VISIBLE,
   CONSTRAINT fk_picture_post1
-    FOREIGN KEY (post_id)
+    FOREIGN KEY (id_post)
     REFERENCES linkeDIn.post (id_post)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -256,11 +256,11 @@ DROP TABLE IF EXISTS linkeDIn.video ;
 CREATE TABLE IF NOT EXISTS linkeDIn.video (
   id_video BIGINT NOT NULL AUTO_INCREMENT,
   video_dir TINYTEXT NOT NULL,
-  post_id BIGINT NOT NULL DEFAULT 1,
+  id_post BIGINT NOT NULL DEFAULT 1,
   PRIMARY KEY (id_video),
-  INDEX fk_video_post1_idx (post_id ASC) VISIBLE,
+  INDEX fk_video_post1_idx (id_post ASC) VISIBLE,
   CONSTRAINT fk_video_post1
-    FOREIGN KEY (post_id)
+    FOREIGN KEY (id_post)
     REFERENCES linkeDIn.post (id_post)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

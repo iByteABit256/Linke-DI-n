@@ -1,7 +1,5 @@
 package com.project.linkedin.Moderator;
 
-
-
 import lombok.Data;
 
 import javax.persistence.*;
