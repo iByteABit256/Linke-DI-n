@@ -1,5 +1,7 @@
 package com.project.linkedin.Proffessional;
 
+
+import com.project.linkedin.User.User;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,10 +47,10 @@ class ProffessionalController {
         return repository.getProffessionalByUserID(id);
     }
 
-//    @GetMapping("/proffessionals/{name}")
-//    List<Proffessional> like(@PathVariable String name) {
-//
-//        return repository.getNameLike(name);
-//    }
+    @GetMapping("/proffessionals/search-{name}")
+    List<User> like(@PathVariable String name) {
+
+        return repository.getNameLike(name);
+    }
 
 }

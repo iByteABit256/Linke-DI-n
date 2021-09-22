@@ -1,5 +1,30 @@
-<h2>Connected with you:</h2> 
+<h2>Connected with you:</h2>
 
 <li *ngFor="let user of fullnames; index as i;">
     {{user.first_name}} {{user.last_name}}
+</li>
+
+
+<div>
+  <form [formGroup] = "formdata" (ngSubmit) = "onClickSearch(formdata.value)" >
+    <br>
+    Search Name <br>
+    <input type = "searchname" class = "fortextbox" name = "searchname" placeholder = "searchname"
+           formControlName = "searchname">
+    <br/><br/>
+
+
+    <input type = "submit" class = "forsubmit" value = "Search">
+
+  </form>
+</div>
+
+<br>
+
+<p *ngIf="searchresults.length == 0">
+  No results.
+</p>
+
+<li *ngFor="let result of searchresults; index as i;">
+  <h4>{{result.first_name}} {{result.last_name}}</h4>
 </li>

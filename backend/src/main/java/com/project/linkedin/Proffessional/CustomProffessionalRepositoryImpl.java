@@ -1,6 +1,6 @@
 package com.project.linkedin.Proffessional;
 
-
+import com.project.linkedin.User.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +17,10 @@ public class CustomProffessionalRepositoryImpl implements CustomProffessionalRep
     EntityManager entityManager;
 
     @Override
-    public List<Proffessional> getNameLike(String firstName) {
-//        Query query = entityManager.createQuery("SELECT e FROM Proffessional e WHERE e.first_name LIKE ?1");
-//        query.setParameter(1, "%" + firstName + "%");
-//        return query.getResultList();
-        return null;
+    public List<User> getNameLike(String firstName) {
+        Query query = entityManager.createQuery(" SELECT u FROM User u WHERE (u.first_name LIKE ?1 OR u.last_name LIKE ?1)");
+        query.setParameter(1, "%" + firstName + "%");
+        return query.getResultList();
     }
     public List<Proffessional> getEmailLike(String email) {
 //        Query query = entityManager.createQuery("SELECT e FROM Proffessional e WHERE e.email LIKE ?1");
