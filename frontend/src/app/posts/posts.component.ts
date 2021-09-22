@@ -7,6 +7,7 @@ import { formatDate } from '@angular/common';
 import { UserDataService } from '../user-data.service';
 import { DeclareInterestService } from '../declare-interest.service';
 import { proffessional } from '../Proffessional/proffessional';
+import { CommentService } from '../comment.service';
 
 @Component({
   selector: 'app-posts',
@@ -16,17 +17,24 @@ import { proffessional } from '../Proffessional/proffessional';
 export class PostsComponent implements OnInit {
 
   formdata: any;
+  comment_form: any;
   post: any;
   posts: Post[] = new Array();
-  proffessional: proffessional;
+  proffessional: proffessional
 
-  constructor(private postService: PostService, private userData: UserDataService, private di: DeclareInterestService) {
+  constructor(private postService: PostService, private userData: UserDataService,
+    private di: DeclareInterestService, private cs: CommentService) {
+
     this.proffessional = this.userData.proffessional;
   }
 
   ngOnInit(): void {
     this.formdata = new FormGroup({ 
       title: new FormControl(""),
+      body: new FormControl(""),
+    });
+
+    this.comment_form = new FormGroup({ 
       body: new FormControl(""),
     });
 
@@ -41,6 +49,12 @@ export class PostsComponent implements OnInit {
     this.postService.createPost(this.post).subscribe(data => {
       console.log(data);
     })
+  }
+  
+  onClickPostComment(data: any, post: Post){
+    console.log(data);
+    console.log(post);
+    this.cs.postComment(this.proffessional.id_proffessional, post.id_post, data.body);
   }
   
   declareInterest(post: Post){
