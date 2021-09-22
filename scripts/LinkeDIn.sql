@@ -212,9 +212,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS linkeDIn.comment ;
 
 CREATE TABLE IF NOT EXISTS linkeDIn.comment (
+  id_comment BIGINT NOT NULL AUTO_INCREMENT, 
   id_proffessional BIGINT NOT NULL DEFAULT 1,
   id_post BIGINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (id_proffessional, id_post),
+  body MEDIUMTEXT NOT NULL,
+  PRIMARY KEY (id_comment),
   INDEX fk_comment_post1_idx (id_post ASC) VISIBLE,
   CONSTRAINT fk_comment_proffessional1
     FOREIGN KEY (id_proffessional)

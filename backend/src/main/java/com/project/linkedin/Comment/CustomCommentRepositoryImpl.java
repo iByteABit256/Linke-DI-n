@@ -19,7 +19,7 @@ public class CustomCommentRepositoryImpl implements CustomCommentRepository {
 
     @Override
     public Comment findComment(Long postid, Long proffid) {
-        Query query = entityManager.createQuery("SELECT e FROM Comment e WHERE e.post_id= ?1 AND e.proffessional_id=?2");
+        Query query = entityManager.createQuery("SELECT e FROM Comment e WHERE e.id_post=?1 AND e.id_proffessional=?2");
         query.setParameter(1, "%" + postid + "%");
         query.setParameter(2, "%" + proffid + "%");
         List<Comment> list =  query.getResultList();

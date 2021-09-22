@@ -11,19 +11,20 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@IdClass(CommentPK.class)
 public class Comment {
-
-    private @Id  Long proffessional_id;
-    private @Id  Long post_id;
+    private @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) Long id_comment;
+    private Long id_proffessional;
+    private Long id_post;
+    private String body;
 
     public Comment() {
     }
 
-    public Comment(Long proffessional_id, Long post_id) {
+    public Comment(Long id_proffessional, Long id_post, String body) {
 
-        this.proffessional_id = proffessional_id;
-        this.post_id = post_id;
+        this.id_proffessional = id_proffessional;
+        this.id_post = id_post;
+        this.body = body;
 
     }
 
