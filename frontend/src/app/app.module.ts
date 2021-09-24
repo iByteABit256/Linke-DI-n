@@ -14,6 +14,7 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TopNavBarComponent } from './top-nav-bar/top-nav-bar.component';
 import { PostsComponent } from './posts/posts.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PostsComponent } from './posts/posts.component';
     PersonalInfoComponent,
     SettingsComponent,
     TopNavBarComponent,
-    PostsComponent
+    PostsComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,

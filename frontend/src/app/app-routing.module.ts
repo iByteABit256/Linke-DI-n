@@ -12,12 +12,18 @@ import { NetworkComponent } from './network/network.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { SettingsComponent } from './settings/settings.component';
+import {UserPageComponent} from "./user-page/user-page.component";
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'welcome',
     pathMatch: 'full',
+  },
+  {
+    path: 'user-page',
+    component: UserPageComponent
+    //canActivate: [UserGuard],
   },
   {
     path: 'welcome',

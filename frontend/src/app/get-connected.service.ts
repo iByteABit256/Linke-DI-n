@@ -43,7 +43,7 @@ export class GetConnectedService {
     if(this.fullnames.length == 0){
       this.getConnected(id);
     }
-    
+
     return this.fullnames;
   }
 }

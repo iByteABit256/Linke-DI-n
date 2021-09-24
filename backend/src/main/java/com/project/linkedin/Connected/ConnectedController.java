@@ -1,6 +1,6 @@
 package com.project.linkedin.Connected;
 
-
+import com.project.linkedin.User.User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Query;
@@ -30,6 +30,13 @@ class ConnectedController {
     List<Long> one(@PathVariable Long id) {
         return repository.findConnected(id);
     }
+
+    @GetMapping("/connected/full-{id}")
+    List<User> fullone(@PathVariable Long id) {
+        return repository.getConnectedUsers(id);
+    }
+
+
 
 
 }

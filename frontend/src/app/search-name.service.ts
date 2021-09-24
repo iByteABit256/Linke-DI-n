@@ -13,7 +13,6 @@ import {newArray} from "@angular/compiler/src/util";
 export class SearchNameService {
 
 
-  // proffessionals: User[]= new Array<User>();
   private backend_url = "http://localhost:8080/proffessionals"
 
   constructor(private http: HttpClient) { }

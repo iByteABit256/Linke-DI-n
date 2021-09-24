@@ -26,5 +26,5 @@
 </p>
 
 <li *ngFor="let result of searchresults; index as i;">
-  <h4>{{result.first_name}} {{result.last_name}}</h4>
+  <a [routerLink]="['/user-page'] " [queryParams]=" {email: result.email} " link to UserPageComponent>  <h4>{{result.first_name}} {{result.last_name}}</h4> </a>
 </li>
