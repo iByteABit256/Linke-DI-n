@@ -55,7 +55,8 @@
          <input type = "submit" class = "forsubmit" value = "Post">
          <br><br>
          
-         {{post.likes}} are interested
+         <p *ngIf="post.likes == 1"> {{post.likes}} is interested </p>
+         <p *ngIf="post.likes != 1"> {{post.likes}} are interested </p>
 
          <br><br>
 
