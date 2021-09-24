@@ -1,0 +1,15 @@
+<h2>The personal info of the user you searched are:</h2>
+
+<h3> Email: </h3> {{user.email}}
+<h3> First Name: </h3> {{user.first_name}}
+<h3> Last Name: </h3> {{user.last_name}}
+<h3> Phone Number: </h3> {{user.phone_number}}
+<h3> Profile Pic: </h3> {{user.profile_picture_dir}}
+
+
+<br>
+
+
+<li *ngFor="let user of connected; index as i;">
+  {{user.first_name}} {{user.last_name}}
+</li>
