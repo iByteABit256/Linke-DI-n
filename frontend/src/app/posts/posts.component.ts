@@ -50,6 +50,14 @@ export class PostsComponent implements OnInit {
           this.posts[i].comments = data[i];
         }
       });
+      
+      let observables2 = this.posts.map(p => this.di.getLikes(p.id_post));
+      let source2 = forkJoin(observables2);
+      source2.subscribe(data => {
+        for(let i = 0; i < this.posts.length; i++){
+          this.posts[i].likes = data[i];
+        }
+      });
     });
   }
 

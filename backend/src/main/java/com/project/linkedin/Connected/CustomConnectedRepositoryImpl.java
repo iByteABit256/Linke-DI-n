@@ -27,7 +27,6 @@ public class CustomConnectedRepositoryImpl implements CustomConnectedRepository{
         List list2 =  query2.getResultList();
         list1.addAll(list2);
         return list1;
-
     }
 
 }

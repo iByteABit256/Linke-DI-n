@@ -37,4 +37,9 @@ public class InterestDeclarationController {
 
         return repository.findById(id).orElseThrow(() -> new InterestDeclarationNotFoundException(id));
     }
+
+    @GetMapping("interestdeclarations/post-{id_post}")
+    Long getLikeAmount(@PathVariable Long id_post){
+        return repository.getPostLikes(id_post);
+    }
 }

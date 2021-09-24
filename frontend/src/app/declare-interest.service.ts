@@ -17,5 +17,9 @@ export class DeclareInterestService {
       console.log(data);
     });
   }
+  
+  getLikes(id_post: Number){
+    return this.http.get<Number>(this.backend_url+"/post-"+id_post, {'headers': httpOptions});
+  }
 
 }
