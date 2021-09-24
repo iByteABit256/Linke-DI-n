@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { forkJoin } from 'rxjs';
 
 import { Post } from '../Post/post';
 import { PostService } from '../post.service';
@@ -8,6 +9,7 @@ import { UserDataService } from '../user-data.service';
 import { DeclareInterestService } from '../declare-interest.service';
 import { proffessional } from '../Proffessional/proffessional';
 import { CommentService } from '../comment.service';
+import { Comment } from '../Comment/comment';
 
 @Component({
   selector: 'app-posts',
@@ -20,7 +22,7 @@ export class PostsComponent implements OnInit {
   comment_form: any;
   post: any;
   posts: Post[] = new Array();
-  proffessional: proffessional
+  proffessional: proffessional;
 
   constructor(private postService: PostService, private userData: UserDataService,
     private di: DeclareInterestService, private cs: CommentService) {
@@ -38,9 +40,17 @@ export class PostsComponent implements OnInit {
       body: new FormControl(""),
     });
 
-    this.postService.getPosts().subscribe(posts => {
-      this.posts = posts;
-    })
+    this.postService.getPosts().then(data => {
+      this.posts = data;
+      
+      let observables = this.posts.map(p => this.cs.getPostComments(p.id_post));
+      let source = forkJoin(observables);
+      source.subscribe(data => {
+        for(let i = 0; i < this.posts.length; i++){
+          this.posts[i].comments = data[i];
+        }
+      });
+    });
   }
 
   onClickSubmit(data: any) {

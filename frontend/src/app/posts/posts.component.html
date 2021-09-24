@@ -18,9 +18,10 @@
     </form>
 </div>
 
-<br/><br/>
+<br><br><br>
 
 <h2>Timeline</h2> 
+<br>
 
 <p *ngIf="posts.length == 0">
    It seems that your timeline is empty.
@@ -38,14 +39,22 @@
          <p>{{post.body}}</p>
 
          Comments <br>
+
+         <ul>
+            <li *ngFor="let comment of post.comments; index as j">
+               {{comment.body}}
+            </li>
+         </ul>
+         
          <input type = "text" class = "fortextbox" name = "commentform"
             placeholder = "" formControlName = "body">
-         <br/><br/>
+         <br><br>
 
          <input type = "submit" class = "forsubmit" value = "Post">
-         <br/><br/>
+         <br><br>
 
       </form>
    </div>
+   <br><br>
 </li>
  

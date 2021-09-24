@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from './User/user';
@@ -14,7 +13,7 @@ export class GetConnectedService {
   fullnames: User[] = new Array<User>();
   idarr!:Number[];
   proffessional : any;
-  private backend_url = "http://localhost:8080/"
+  private backend_url = "https://localhost:8080/"
 
   constructor(private http: HttpClient) { }
 
@@ -43,7 +42,7 @@ export class GetConnectedService {
     if(this.fullnames.length == 0){
       this.getConnected(id);
     }
-    
+
     return this.fullnames;
   }
 }

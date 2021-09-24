@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { httpOptions } from './httpOptions';
 import {User} from "./User/user";
-import {newArray} from "@angular/compiler/src/util";
-
-
 
 
 @Injectable({
@@ -25,4 +22,3 @@ export class SearchNameService {
   }
 
 }
-
