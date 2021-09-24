@@ -10,12 +10,12 @@ import {proffessional} from "./Proffessional/proffessional";
 })
 export class UserPageService {
 
-  fullnames: User[] = new Array<User>();
+  //fullnames: User[] = new Array<User>();
   private backend_url: String = "http://localhost:8080";
 
   constructor(private http: HttpClient) { }
 
-   getproff(id : Number){
+  getproff(id : Number){
     return this.http.get<proffessional>(this.backend_url+"/proffessionals/user-"+id,{'headers': httpOptions});
   }
 

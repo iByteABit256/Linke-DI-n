@@ -33,3 +33,27 @@ h3{
 .success {
   color: greenyellow;
 }
+
+a:link {
+color: greenyellow;
+background-color: transparent;
+text-decoration: none;
+}
+
+a:visited {
+color: grey;
+background-color: transparent;
+text-decoration: none;
+}
+
+a:hover {
+color: yellow;
+background-color: transparent;
+text-decoration: underline;
+}
+
+a:active {
+color: green;
+background-color: transparent;
+text-decoration: underline;
+}

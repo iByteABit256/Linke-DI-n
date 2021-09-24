@@ -13,7 +13,7 @@ export class GetConnectedService {
   fullnames: User[] = new Array<User>();
   idarr!:Number[];
   proffessional : any;
-  private backend_url = "https://localhost:8080/"
+  private backend_url = "http://localhost:8080/"
 
   constructor(private http: HttpClient) { }
 
