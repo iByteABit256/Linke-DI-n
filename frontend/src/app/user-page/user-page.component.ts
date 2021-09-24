@@ -30,15 +30,19 @@ export class UserPageComponent implements OnInit {
 
     this.ups.getuserfromemail(this.email).subscribe(user => {
       this.user = user;
-      //console.log(user);
-    })
 
-    this.ups.getproff(this.user.id_user).subscribe(proff => {
-      this.proff = proff;
-    })
-    this.ups.getConnected(this.proff.id_proffessional).subscribe(connected => {
-      this.connected = connected;
-    })
+      console.log(this.user);
+
+      this.ups.getproff(this.user.id_user).subscribe(proff => {
+        this.proff = proff;
+
+        this.ups.getConnected(this.proff.id_proffessional).subscribe(connected => {
+          this.connected = connected;
+        });
+
+      });
+
+    });
   }
 
   ngOnDestroy() {

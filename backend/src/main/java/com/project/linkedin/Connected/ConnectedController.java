@@ -36,7 +36,4 @@ class ConnectedController {
         return repository.getConnectedUsers(id);
     }
 
-
-
-
 }
