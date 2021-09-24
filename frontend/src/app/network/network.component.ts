@@ -22,7 +22,7 @@ export class NetworkComponent implements OnInit {
 
   ngOnInit(): void {
     this.formdata = new FormGroup({
-      searchname: new FormControl("Search by typing a first name or a last name!!"),
+      searchname: new FormControl(""),
     });
 
     this.fullnames = this.gc.getUsers(this.uds.proffessional.id_proffessional);

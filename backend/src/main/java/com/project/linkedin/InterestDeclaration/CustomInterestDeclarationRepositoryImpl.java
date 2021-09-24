@@ -15,4 +15,12 @@ public class CustomInterestDeclarationRepositoryImpl implements CustomInterestDe
     @PersistenceContext
     EntityManager entityManager;
 
+    @Override
+    public Long getPostLikes(Long id_post){
+        Query q = entityManager.createQuery("SELECT COUNT(i.id_proffessional) FROM InterestDeclaration i WHERE i.id_post = ?1" );
+        q.setParameter(1, id_post);
+        List res =  q.getResultList();
+        return (Long) res.get(0);
+    }
+
 }

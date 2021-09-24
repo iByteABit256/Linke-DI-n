@@ -11,6 +11,7 @@ import { UserDataService } from './user-data.service';
 export class PostService {
   private backend_url = "http://localhost:8080/posts"
   private loggedIn: boolean = false;
+  posts!: Post[];
 
   constructor(private http: HttpClient, private userData: UserDataService) { }
 
@@ -19,9 +20,14 @@ export class PostService {
     return this.http.post<Post>(this.backend_url, post, {'headers': httpOptions});
   }
 
-  getPosts(){
+  async getPosts(): Promise<Post[]>{
     console.log("Getting posts");
 
-    return this.http.get<Post[]>(this.backend_url+"/fullproffessional-"+this.userData.proffessional.id_proffessional, {'headers': httpOptions});
+    await this.http.get<Post[]>(this.backend_url+"/fullproffessional-"+this.userData.proffessional.id_proffessional, {'headers': httpOptions})
+    .toPromise()
+    .then(data => {
+      this.posts = data;
+    });
+    return this.posts;
   }
 }

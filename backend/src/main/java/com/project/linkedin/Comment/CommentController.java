@@ -26,8 +26,13 @@ class CommentController {
         return repository.save(newComment);
     }
 
-    @GetMapping("/comments/{postid}-{proffid}")
+    @GetMapping("/comments/{postid}/{proffid}")
     Comment one(@PathVariable Long postid,@PathVariable Long proffid) {
         return repository.findComment(postid,proffid);
+    }
+
+    @GetMapping("/comments/{postid}")
+    List<Comment> getComments(@PathVariable Long postid) {
+        return repository.getPostComments(postid);
     }
 }
