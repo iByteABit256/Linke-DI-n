@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@IdClass(JobOfferApplicationPK.class)
 public class JobOfferApplication implements Serializable{
     private @Id Long id_proffessional;
     private @Id Long id_job_offer;
