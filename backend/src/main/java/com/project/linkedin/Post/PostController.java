@@ -39,6 +39,8 @@ public class PostController {
         return repository.findalluserposts(id);
     }
 
+    @GetMapping("/posts/recommendations-{id}")
+    List<Post> getRecommendations(@PathVariable Long id) { return repository.getRecommended(id, 5); }
 
     // Single item
 

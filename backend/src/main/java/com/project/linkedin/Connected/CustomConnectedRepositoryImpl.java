@@ -34,7 +34,6 @@ public class CustomConnectedRepositoryImpl implements CustomConnectedRepository{
         Query query1 = entityManager.createQuery("SELECT u FROM User u  WHERE ( (u.id_user IN(SELECT p.id_user FROM Proffessional p WHERE p.id_proffessional IN ( SELECT e.id_proffessional1 FROM Connected e WHERE e.id_proffessional2 = ?1))) OR (u.id_user IN(SELECT p.id_user FROM Proffessional p WHERE p.id_proffessional IN ( SELECT e.id_proffessional2 FROM Connected e WHERE e.id_proffessional1 = ?1))))" );
         query1.setParameter(1, id);
         return query1.getResultList();
-
     }
 
 }
