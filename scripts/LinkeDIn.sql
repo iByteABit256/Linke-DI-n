@@ -158,6 +158,28 @@ CREATE TABLE IF NOT EXISTS linkeDIn.job_offer (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table linkeDIn.job_offer_application
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS linkeDIn.job_offer_application ;
+
+CREATE TABLE IF NOT EXISTS linkeDIn.job_offer_application (
+  id_proffessional BIGINT NOT NULL DEFAULT 1,
+  id_job_offer BIGINT NOT NULL DEFAULT 1,
+  INDEX fk_job_offer_application_proffessional1_idx (id_proffessional ASC) VISIBLE,
+  PRIMARY KEY (id_proffessional, id_job_offer),
+  CONSTRAINT fk_job_offer_application_proffessional1
+    FOREIGN KEY (id_proffessional)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_job_offer_application_job_offer1
+    FOREIGN KEY (id_job_offer)
+    REFERENCES linkeDIn.job_offer (id_job_offer)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table linkeDIn.interest_declaration
