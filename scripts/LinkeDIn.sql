@@ -205,6 +205,30 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table linkeDIn.connection_requests
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS linkeDIn.connection_requests ;
+
+CREATE TABLE IF NOT EXISTS linkeDIn.connection_requests (
+  id_proffessional1 BIGINT NOT NULL DEFAULT 1,
+  id_proffessional2 BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_proffessional1, id_proffessional2),
+  INDEX fk_proffessional_has_proffessional_proffessional2_idx (id_proffessional2 ASC) VISIBLE,
+  INDEX fk_proffessional_has_proffessional_proffessional1_idx (id_proffessional1 ASC) VISIBLE,
+  CONSTRAINT fk_connection_request_has_id_proffessional1
+  FOREIGN KEY (id_proffessional1)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_connection_request_has_id_proffessional2
+    FOREIGN KEY (id_proffessional2)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table linkeDIn.connected
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS linkeDIn.connected ;
@@ -215,13 +239,63 @@ CREATE TABLE IF NOT EXISTS linkeDIn.connected (
   PRIMARY KEY (id_proffessional1, id_proffessional2),
   INDEX fk_proffessional_has_proffessional_proffessional2_idx (id_proffessional2 ASC) VISIBLE,
   INDEX fk_proffessional_has_proffessional_proffessional1_idx (id_proffessional1 ASC) VISIBLE,
-  CONSTRAINT fk_proffessional_has_proffessional_proffessional1
+  CONSTRAINT fk_connected_has_id_proffessional1
     FOREIGN KEY (id_proffessional1)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT fk_proffessional_has_proffessional_proffessional2
+  CONSTRAINT fk_connected_has_id_proffessional2
     FOREIGN KEY (id_proffessional2)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table linkeDIn.discussion_index
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS linkeDIn.discussion_index ;
+
+CREATE TABLE IF NOT EXISTS linkeDIn.discussion_index (
+  id_proffessional1 BIGINT NOT NULL DEFAULT 1,
+  id_proffessional2 BIGINT NOT NULL DEFAULT 1,
+  id_discussion BIGINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_proffessional1, id_proffessional2),
+  INDEX fk_discussion_index_id_proffessional2_idx (id_proffessional2 ASC) VISIBLE,
+  INDEX fk_discussion_index_id_proffessional1_idx (id_proffessional1 ASC) VISIBLE,
+  CONSTRAINT fk_discussion_index_id_proffessional1
+    FOREIGN KEY (id_proffessional1)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_discussion_index_id_proffessional2
+    FOREIGN KEY (id_proffessional2)
+    REFERENCES linkeDIn.proffessional (id_proffessional)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_discussion_index_id_discussion
+    FOREIGN KEY (id_discussion)
+    REFERENCES linkeDIn.discussion (id_discussion)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table linkeDIn.discussion
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS linkeDIn.discussion ;
+
+CREATE TABLE IF NOT EXISTS linkeDIn.discussion (
+  id_discussion BIGINT NOT NULL AUTO_INCREMENT,
+  id_sender BIGINT NOT NULL DEFAULT 1,
+  message TINYTEXT NOT NULL,
+  dt DATETIME NOT NULL,
+  INDEX fk_discussion_sender_idx (id_sender ASC) VISIBLE,
+  PRIMARY KEY (id_discussion),
+  CONSTRAINT fk_discussion_sender
+    FOREIGN KEY (id_sender)
     REFERENCES linkeDIn.proffessional (id_proffessional)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
