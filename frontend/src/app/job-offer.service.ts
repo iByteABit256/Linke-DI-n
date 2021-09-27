@@ -30,4 +30,15 @@ export class JobOfferService {
     return this.joboffers;
   }
 
+  async getRecommendedJobOffers(): Promise<JobOffer[]>{
+    console.log("Getting recommended job offers");
+
+    await this.http.get<JobOffer[]>(this.backend_url+"/recommendations-"+this.userData.proffessional.id_proffessional, {'headers': httpOptions})
+      .toPromise()
+      .then(data => {
+        this.joboffers = data;
+      });
+    return this.joboffers;
+  }
+
 }

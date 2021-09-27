@@ -1,7 +1,7 @@
-<p>job-offers works!</p>
-
+<br>
 
 <div>
+
   <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
 
     Title <br>
@@ -30,5 +30,7 @@
 
   <p *ngIf="joboffer.applications == 1"> {{joboffer.applications}} has applied </p>
   <p *ngIf="joboffer.applications != 1"> {{joboffer.applications}} have applied </p>
+  <h6 *ngIf="joboffer.recommended"> Recommended for you </h6>
 
+  <br>
 </li>

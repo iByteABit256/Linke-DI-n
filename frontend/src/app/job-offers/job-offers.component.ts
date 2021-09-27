@@ -39,16 +39,23 @@ export class JobOffersComponent implements OnInit {
 
     this.jos.getJobOffers().then(data => {
       this.generaljoboffers = data;
-
-
-      let observables = this.generaljoboffers.map(p => this.joas.getApplications(p.id_job_offer));
-      let source = forkJoin(observables);
-      source.subscribe(data => {
-        for(let i = 0; i < this.generaljoboffers.length; i++){
-          this.generaljoboffers[i].applications = data[i];
+      
+      this.jos.getRecommendedJobOffers().then(data => {
+        let recommendations: JobOffer[] = data;
+        for(let i = 0; i < recommendations.length; i++){
+          recommendations[i].recommended = true;
+          this.generaljoboffers.unshift(recommendations[i]);
         }
-      });
 
+        let observables = this.generaljoboffers.map(p => this.joas.getApplications(p.id_job_offer));
+        let source = forkJoin(observables);
+        source.subscribe(data => {
+          for(let i = 0; i < this.generaljoboffers.length; i++){
+            this.generaljoboffers[i].applications = data[i];
+          }
+        });
+
+      });
     });
 
   }
