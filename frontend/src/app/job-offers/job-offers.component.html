@@ -28,7 +28,7 @@
   <input type = "submit" class = "forsubmit" value = "Apply for this Job Offer!!!" (click)="makeApplication(joboffer)">
   <p>{{joboffer.body}}</p>
 
-  <p *ngIf="joboffer.applications == 1"> {{joboffer.applications}} is interested </p>
-  <p *ngIf="joboffer.applications != 1"> {{joboffer.applications}} are interested </p>
+  <p *ngIf="joboffer.applications == 1"> {{joboffer.applications}} has applied </p>
+  <p *ngIf="joboffer.applications != 1"> {{joboffer.applications}} have applied </p>
 
 </li>
