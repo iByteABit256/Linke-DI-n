@@ -45,5 +45,9 @@ do
         echo "INSERT INTO comment VALUES(default, $i, $j, 'Hello world!');" >> $scriptFile
     done
 
+    echo "INSERT INTO job_offer VALUES(default, $i, 'Newborn Software Engineer', 'At least 5 years of prior experience');" >> $scriptFile
+
+    echo "INSERT INTO job_offer_seen VALUES($i, $(( RANDOM%$i+1 )));" >> $scriptFile
+
 done
 
