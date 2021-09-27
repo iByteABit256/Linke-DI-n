@@ -1,4 +1,5 @@
-package com.project.linkedin.InformationPage;
+package com.project.linkedin.ConnectionRequests;
+
 
 
 import org.springframework.http.HttpStatus;
@@ -7,13 +8,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+
 @ControllerAdvice
-public class InformationPageNotFoundAdvice {
+public class ConnectionRequestNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(InformationPageNotFoundException.class)
+    @ExceptionHandler(ConnectionRequestNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String employeeNotFoundHandler(InformationPageNotFoundException ex) {
+    String employeeNotFoundHandler(ConnectionRequestNotFoundException ex) {
         return ex.getMessage();
     }
 }

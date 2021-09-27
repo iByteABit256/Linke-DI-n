@@ -1,4 +1,5 @@
-package com.project.linkedin.InformationPage;
+package com.project.linkedin.DiscussionIndex;
+
 
 
 import org.springframework.http.HttpStatus;
@@ -8,12 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class InformationPageNotFoundAdvice {
+public class DiscussionIndexNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(InformationPageNotFoundException.class)
+    @ExceptionHandler(DiscussionIndexNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String employeeNotFoundHandler(InformationPageNotFoundException ex) {
+    String employeeNotFoundHandler(DiscussionIndexNotFoundException ex) {
         return ex.getMessage();
     }
 }
