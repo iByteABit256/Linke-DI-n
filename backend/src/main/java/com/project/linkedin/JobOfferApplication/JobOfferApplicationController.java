@@ -30,8 +30,8 @@ public class JobOfferApplicationController {
         return repository.save(newJobOfferApplication);
     }
 
-    @GetMapping("interestdeclarations/joboffer-{id_job_offer}")
+    @GetMapping("/jobofferapplications/joboffer-{id_job_offer}")
     Long getApplicationsAmount(@PathVariable Long id_job_offer){
-        return repository.getJobOfferApplications(id_job_offer);
+        return repository.getApplicationsAmount(id_job_offer);
     }
 }
