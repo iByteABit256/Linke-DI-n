@@ -34,4 +34,8 @@ public class JobOfferApplicationController {
     Long getApplicationsAmount(@PathVariable Long id_job_offer){
         return repository.getApplicationsAmount(id_job_offer);
     }
+
+    @GetMapping("/jobofferapplications/recommendations-{id_prof}")
+    List<JobOfferApplication> getRecommended(@PathVariable Long id_prof) { return repository.getRecommended(id_prof); }
+
 }

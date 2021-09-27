@@ -1,6 +1,7 @@
 package com.project.linkedin.JobOfferApplication;
 
 
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,11 @@ public class CustomJobOfferApplicationRepositoryImpl implements CustomJobOfferAp
         List res =  q.getResultList();
         return (Long) res.get(0);
 
+    }
+
+    @Override
+    public List<JobOfferApplication> getRecommended(Long id_prof){
+        return null;
     }
 
 }
