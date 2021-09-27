@@ -1,6 +1,5 @@
 package com.project.linkedin.Post;
 
-import com.project.linkedin.User.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.ejml.simple.SimpleMatrix;
@@ -9,11 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.project.linkedin.MatrixFactorization.matrixfactorization;
+import com.project.linkedin.MatrixFactorization.MatrixFactorization;
 
 @Repository
 @Transactional(readOnly = true)
@@ -139,14 +137,14 @@ public class CustomPostRepositoryImpl implements CustomPostRepository {
 
         X.print();
 
-        int K = 3;
+        int K = 2;
         SimpleMatrix V = SimpleMatrix.random_DDRM(profs.size(),K,0,3,new Random());
         SimpleMatrix F = SimpleMatrix.random_DDRM(posts.size(),K,0,3,new Random());
 
         V.print();
         F.print();
 
-        X = matrixfactorization.mf(X, V, F, K, 5000, 0.0002, 0.02);
+        X = MatrixFactorization.mf(X, V, F, K, 1000, 0.008, 0.001);
 
         X.print();
 

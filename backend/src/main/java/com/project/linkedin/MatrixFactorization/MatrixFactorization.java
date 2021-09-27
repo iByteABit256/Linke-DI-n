@@ -2,7 +2,7 @@ package com.project.linkedin.MatrixFactorization;
 
 import org.ejml.simple.SimpleMatrix;
 
-public class matrixfactorization {
+public class MatrixFactorization {
     public static SimpleMatrix mf(SimpleMatrix X, SimpleMatrix V, SimpleMatrix F, int K, int steps, double alpha, double beta){
         F = F.transpose();
 
@@ -32,7 +32,7 @@ public class matrixfactorization {
                         // Calculate error
                         double eij = X.get(i,j)-V.rows(i,i+1).dot(F.cols(j,j+1));
 
-                        // Add error square to total error
+                        // Add local error square to total error
                         e += eij*eij;
 
                         for(int k = 0; k < K; k++){
