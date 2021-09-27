@@ -29,4 +29,9 @@ public class JobOfferApplicationController {
     JobOfferApplication newJobOffer(@RequestBody JobOfferApplication newJobOfferApplication) {
         return repository.save(newJobOfferApplication);
     }
+
+    @GetMapping("interestdeclarations/joboffer-{id_job_offer}")
+    Long getApplicationsAmount(@PathVariable Long id_job_offer){
+        return repository.getJobOfferApplications(id_job_offer);
+    }
 }

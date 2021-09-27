@@ -16,4 +16,13 @@ public class CustomJobOfferApplicationRepositoryImpl implements CustomJobOfferAp
     @PersistenceContext
     EntityManager entityManager;
 
+    @Override
+    public Long getApplicationsAmount(Long id_job_offer){
+        Query q = entityManager.createQuery("SELECT COUNT(i.id_proffessional) FROM JobOffer i WHERE i.id_job_offer = ?1" );
+        q.setParameter(1, id_job_offer);
+        List res =  q.getResultList();
+        return (Long) res.get(0);
+
+    }
+
 }

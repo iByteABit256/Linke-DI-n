@@ -1,1 +1,36 @@
 <p>job-offers works!</p>
+
+
+<div>
+  <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+
+    Title <br>
+    <input type = "text" class = "fortextbox" name = "title" placeholder = "Title"
+           formControlName = "title">
+    <br/><br/>
+
+    Body <br>
+    <input type = "text" class = "fortextbox" name = "body"
+           placeholder = "Body" formControlName = "body">
+    <br/><br/>
+
+    <input type = "submit" class = "forsubmit" value = "Post">
+
+  </form>
+</div>
+
+<br><br><br>
+
+
+<li *ngFor="let joboffer of generaljoboffers; index as i;">
+
+  <h3 style="display: inline;">{{joboffer.title}}    </h3>
+  <input type = "submit" class = "forsubmit" value = "Apply for this Job Offer!!!" (click)="makeApplication(joboffer)">
+  <p>{{joboffer.body}}</p>
+
+  <p *ngIf="joboffer.applications == 1"> {{joboffer.applications}} is interested </p>
+  <p *ngIf="joboffer.applications != 1"> {{joboffer.applications}} are interested </p>
+
+
+
+</li>
