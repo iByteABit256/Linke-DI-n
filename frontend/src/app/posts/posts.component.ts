@@ -10,6 +10,7 @@ import { DeclareInterestService } from '../declare-interest.service';
 import { proffessional } from '../Proffessional/proffessional';
 import { CommentService } from '../comment.service';
 import { Comment } from '../Comment/comment';
+import { RecommendedPostsService } from '../recommended-posts.service';
 
 @Component({
   selector: 'app-posts',
@@ -25,7 +26,7 @@ export class PostsComponent implements OnInit {
   proffessional: proffessional;
 
   constructor(private postService: PostService, private userData: UserDataService,
-    private di: DeclareInterestService, private cs: CommentService) {
+    private di: DeclareInterestService, private cs: CommentService, private rp: RecommendedPostsService) {
 
     this.proffessional = this.userData.proffessional;
   }
@@ -42,21 +43,31 @@ export class PostsComponent implements OnInit {
 
     this.postService.getPosts().then(data => {
       this.posts = data;
-      
-      let observables = this.posts.map(p => this.cs.getPostComments(p.id_post));
-      let source = forkJoin(observables);
-      source.subscribe(data => {
-        for(let i = 0; i < this.posts.length; i++){
-          this.posts[i].comments = data[i];
+
+      let recommended!: Post[];
+      this.rp.getRecommendedPosts().then(posts => {
+        recommended = posts;
+        for(let i = 0; i < recommended.length; i++){
+          this.posts.unshift(recommended[i]);
+          this.posts[0].recommended = true;
         }
-      });
       
-      let observables2 = this.posts.map(p => this.di.getLikes(p.id_post));
-      let source2 = forkJoin(observables2);
-      source2.subscribe(data => {
-        for(let i = 0; i < this.posts.length; i++){
-          this.posts[i].likes = data[i];
-        }
+        let observables = this.posts.map(p => this.cs.getPostComments(p.id_post));
+        let source = forkJoin(observables);
+        source.subscribe(data => {
+          for(let i = 0; i < this.posts.length; i++){
+            this.posts[i].comments = data[i];
+          }
+        });
+        
+        let observables2 = this.posts.map(p => this.di.getLikes(p.id_post));
+        let source2 = forkJoin(observables2);
+        source2.subscribe(data => {
+          for(let i = 0; i < this.posts.length; i++){
+            this.posts[i].likes = data[i];
+          }
+        });
+
       });
     });
   }

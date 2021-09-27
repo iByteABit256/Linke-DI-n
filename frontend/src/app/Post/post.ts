@@ -8,6 +8,7 @@ export class Post{
     dt: String;
     comments: Comment[];
     likes: Number;
+    recommended: Boolean;
 
     constructor(id_proffessional: Number, title: String, body: String, dt: String){
         this.id_post = 0;
@@ -17,5 +18,6 @@ export class Post{
         this.dt = dt;
         this.comments = [];
         this.likes = -1;
+        this.recommended = false;
     }
 }
