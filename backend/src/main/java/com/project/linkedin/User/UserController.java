@@ -49,6 +49,10 @@ class UserController {
         return repository.getNameLike(name);
     }
 
+    @GetMapping("/users/prof-{id_prof}")
+    User getUserFromProf(@PathVariable Long id_prof) {
+        return repository.getUserFromProf(id_prof);
+    }
 
     // @PutMapping("/users/{id}")
     // User replaceUser(@RequestBody User newUser, @PathVariable Long id) {

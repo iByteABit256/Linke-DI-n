@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 
 @Repository
@@ -13,5 +15,13 @@ public class CustomDiscussionRepositoryImpl implements CustomDiscussionRepositor
 
     @PersistenceContext
     EntityManager entityManager;
+
+    @Override
+    public List<Discussion> getDiscussions(Long id_prof){
+        Query query = entityManager.createQuery("SELECT d FROM Discussion d " +
+                "WHERE d.id_proffessional1=?1 OR d.id_proffessional2=?1");
+        query.setParameter(1,id_prof);
+        return query.getResultList();
+    }
 
 }

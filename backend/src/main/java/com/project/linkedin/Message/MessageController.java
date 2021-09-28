@@ -25,4 +25,9 @@ public class MessageController {
         return repository.save(newMessage);
     }
 
+    @GetMapping("/messages/disc-{id_disc}")
+    List<Message> getMessages(@PathVariable Long id_disc) {
+        return repository.getMessages(id_disc);
+    }
+
 }

@@ -43,4 +43,9 @@ export class UserDataService {
         }, 1000);
     });
   }
+  
+  getUserFromProf(id_prof: Number){
+    return this.http.get<User>(this.backend_url+"users/prof-"+id_prof, {'headers': httpOptions});
+  }
+  
 }

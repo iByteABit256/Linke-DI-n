@@ -22,4 +22,10 @@ public class DiscussionController {
     Discussion newDiscussion(@RequestBody Discussion newDiscussion) {
         return repository.save(newDiscussion);
     }
+
+    @GetMapping("/discussions/sender-{id_prof}")
+    List<Discussion> getDiscussions(@PathVariable Long id_prof) {
+        return repository.getDiscussions(id_prof);
+    }
+
 }

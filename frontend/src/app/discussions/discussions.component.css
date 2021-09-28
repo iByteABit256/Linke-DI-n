@@ -1,0 +1,18 @@
+.discussions{
+    grid-area: discussions;
+}
+
+.messages{
+    grid-area: messages;
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: "discussions messages";
+    grid-template-columns: 400px auto;
+ }
+ 
+h2 {
+   text-align: center;
+}
