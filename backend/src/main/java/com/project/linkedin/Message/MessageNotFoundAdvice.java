@@ -1,4 +1,4 @@
-package com.project.linkedin.DiscussionIndex;
+package com.project.linkedin.Message;
 
 
 
@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+
 @ControllerAdvice
-public class DiscussionIndexNotFoundAdvice {
+public class MessageNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(DiscussionIndexNotFoundException.class)
+    @ExceptionHandler(MessageNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String employeeNotFoundHandler(DiscussionIndexNotFoundException ex) {
+    String employeeNotFoundHandler(MessageNotFoundException ex) {
         return ex.getMessage();
     }
 }
