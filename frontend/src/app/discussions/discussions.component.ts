@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+
 import { Discussion } from '../Discussion/discussion';
 import { DiscussionService } from '../discussions.service';
 import { MessageService } from '../messages.service';
@@ -14,6 +16,7 @@ import { User } from '../User/user';
 })
 export class DiscussionsComponent implements OnInit {
   
+  formdata: any;
   discussions!: Discussion[];
   otherUserCurrent: any;
   id_prof: Number;
@@ -23,6 +26,10 @@ export class DiscussionsComponent implements OnInit {
   constructor(private ds: DiscussionService, private ud: UserDataService, private ms: MessageService) {
     this.id_prof = this.ud.proffessional.id_proffessional;
     this.active_discussion = -1;
+
+    this.formdata = new FormGroup({ 
+      message: new FormControl(""),
+    });
   }
 
   ngOnInit(): void {
@@ -42,10 +49,19 @@ export class DiscussionsComponent implements OnInit {
   
   activateDiscussion(id_disc: Number, otherUser: User){
 
-    this.ms.getDiscussions(id_disc).subscribe(data => {
+    this.ms.getMessages(id_disc).subscribe(data => {
       this.messages = data;
       this.otherUserCurrent = otherUser;
+      this.active_discussion = id_disc;
     });
   }
-
+  
+  sendMessage(data: any){
+    console.log(data.message);
+    this.ms.sendMessage(this.active_discussion, this.ud.proffessional.id_proffessional, data.message).subscribe(data => {
+      console.log(data);
+    });
+  
+  }
+  
 }

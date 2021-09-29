@@ -26,7 +26,7 @@ do
     echo "INSERT INTO post VALUES($((4+4*($i-1))), $((3+4*($i-1))), '$i', '$i', '$(date +"%Y-%m-%d %H:%M:%S")');" >> $scriptFile
 done
 
-#! Connected, Interest Declarations, Comments, Job Offers, Job Offers Seen
+#! Connected, Interest Declarations, Comments, Job Offers
 for i in $(seq 3 8 $(($sizefactor*8)))
 do
     #! Connected with half of users
@@ -46,6 +46,12 @@ do
     done
 
     echo "INSERT INTO job_offer VALUES(default, $i, 'Newborn Software Engineer', 'At least 5 years of prior experience');" >> $scriptFile
+
+done
+
+#! Job Offers Seen
+for i in $(seq 3 4 $(($sizefactor*2)))
+do
 
     echo "INSERT INTO job_offer_seen VALUES($i, $(( RANDOM%$i+1 )));" >> $scriptFile
 
