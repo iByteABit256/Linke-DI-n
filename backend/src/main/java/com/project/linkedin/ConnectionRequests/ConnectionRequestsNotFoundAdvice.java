@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 @ControllerAdvice
-public class ConnectionRequestNotFoundAdvice {
+public class ConnectionRequestsNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(ConnectionRequestNotFoundException.class)
+    @ExceptionHandler(ConnectionRequestsNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String employeeNotFoundHandler(ConnectionRequestNotFoundException ex) {
+    String employeeNotFoundHandler(ConnectionRequestsNotFoundException ex) {
         return ex.getMessage();
     }
 }

@@ -21,7 +21,6 @@ export class UserPageComponent implements OnInit {
   sub: any;
 
   constructor(private uds:UserDataService,private ups: UserPageService, private route: ActivatedRoute) { }
-  //TO DO CREATE USERPAGE SERVICE THAT GETS ALL THE DATA ONNTHE USERWITH THE EMAIL GIVEN AT PARAMS
   ngOnInit(): void {
     this.sub = this.route.queryParams.subscribe((params: Params) => {
       this.email = params['email'];

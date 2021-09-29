@@ -1,1 +1,12 @@
-<p>notifications works!</p>
+<h3> Pending Requests </h3>
+
+<li *ngFor="let connectionrequest of pendingrequests; index as i;">
+  {{i}} {{proffessionalswhorequested[0].first_name}}  {{pendingrequests.length}}
+  <div *ngIf="i < pendingrequests.length">
+    {{proffessionalswhorequested[i].first_name}} {{proffessionalswhorequested[i].last_name}}
+    <input type = "submit" class = "forsubmit" value = "Accept" (click)="onClickAcceptConnectionRequest(connectionrequest)">
+    <input type = "submit" class = "forsubmit" value = "Reject" (click)="onClickRejectConnectionRequest(connectionrequest)">
+  </div>
+</li>
+
+

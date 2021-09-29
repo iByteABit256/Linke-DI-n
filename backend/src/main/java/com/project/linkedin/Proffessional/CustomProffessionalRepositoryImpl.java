@@ -40,4 +40,5 @@ public class CustomProffessionalRepositoryImpl implements CustomProffessionalRep
 
         return list.get(0);
     }
+
 }

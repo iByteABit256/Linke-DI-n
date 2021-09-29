@@ -8,4 +8,5 @@ public interface CustomProffessionalRepository {
     List<User> getNameLike(String firstName);
     List<Proffessional> getEmailLike(String email);
     Proffessional getProffessionalByUserID(Long ID);
+
 }

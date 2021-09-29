@@ -24,7 +24,7 @@ export class UserDataService {
   async setUser(user: any){
     this.user = user;
     this.setObservable();
-    
+
     if(user != null){
       await this.http.get<proffessional>(this.backend_url+"proffessionals/user-"+user.id_user, {'headers': httpOptions})
         .toPromise()
@@ -43,9 +43,16 @@ export class UserDataService {
         }, 1000);
     });
   }
-  
+
+
   getUserFromProf(id_prof: Number){
     return this.http.get<User>(this.backend_url+"users/prof-"+id_prof, {'headers': httpOptions});
   }
-  
+
+
+
+  getproffessionalbyuserid(id:Number){
+    return this.http.get<proffessional>(this.backend_url+"proffessionals/user-"+id, {'headers': httpOptions});
+  }
+
 }

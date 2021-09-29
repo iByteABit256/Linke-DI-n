@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class ConnectionRequestPK implements Serializable {
+public class ConnectionRequestsPK implements Serializable {
 
     private Long id_proffessional1;
     private Long id_proffessional2;
