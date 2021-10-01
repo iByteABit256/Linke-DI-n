@@ -28,8 +28,6 @@ export class SignUpPageComponent implements OnInit {
         first_name: new FormControl("John"),
         last_name: new FormControl("Black"),
         phone_number: new FormControl("2130929394"),
-        profile_picture_dir: new FormControl("Your pretty face"),
-        settings: new FormControl("mysettings.conf")
     }); 
   }
 
@@ -38,8 +36,7 @@ export class SignUpPageComponent implements OnInit {
     this.successMessage = "";
 
     this.user = new User(data.email, data.password,
-      data.first_name, data.last_name, data.phone_number,
-      data.profile_picture_dir, data.settings);
+      data.first_name, data.last_name, data.phone_number);
 
     this.loginService.Login(data.email).subscribe(response => {
       if(response){

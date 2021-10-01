@@ -26,8 +26,9 @@
   </p>
 
   <li *ngFor="let result of searchresults; index as i;">
-    <a [routerLink]="['/user-page'] " [queryParams]=" {email: result.email} " link to UserPageComponent>  <h4 style="display: inline;">{{result.first_name}} {{result.last_name}}</h4> </a>
+    <a [routerLink]="['/user-page'] " [queryParams]=" {email: result.email} " link to UserPageComponent>  <h4 style="display: inline;">{{result.first_name}} {{result.last_name}}   </h4> </a>
     <input type = "submit" class = "forsubmit" value = "Send Request" (click)="sendConnectionRequest(result)">
+    <input type = "submit" class = "forsubmit" value = "Start Discussion" (click)="startDiscussion(result)">
   </li>
 </div>
 

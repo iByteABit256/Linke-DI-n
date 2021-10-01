@@ -7,6 +7,7 @@ import {SearchNameService} from "../search-name.service";
 import {proffessional} from "../Proffessional/proffessional";
 import {ConnectionRequest} from "../ConnectionRequest/connectionrequest";
 import {ConnectionRequestService} from "../connection-request.service";
+import { DiscussionService } from '../discussions.service';
 
 @Component({
   selector: 'app-network',
@@ -21,11 +22,17 @@ export class NetworkComponent implements OnInit {
   searchresults: User[]= new Array<User>();
   formdata: any;
   fullnames:User[] = new Array<User>();
-  constructor(private uds: UserDataService, private gc : GetConnectedService, private sn: SearchNameService,private crs: ConnectionRequestService) { }
+  discussionForm: any;
+  constructor(private uds: UserDataService, private gc : GetConnectedService,
+    private sn: SearchNameService, private crs: ConnectionRequestService, private ds: DiscussionService) { }
 
   ngOnInit(): void {
     this.formdata = new FormGroup({
       searchname: new FormControl(""),
+    });
+
+    this.discussionForm = new FormGroup({
+      proffessional: new FormControl(""),
     });
 
     this.fullnames = this.gc.getUsers(this.uds.proffessional.id_proffessional);
@@ -48,5 +55,12 @@ export class NetworkComponent implements OnInit {
       })
     })
 
+  }
+
+  startDiscussion(user:User){
+    this.uds.getproffessionalbyuserid(user.id_user).subscribe(proff =>{
+      this.proffessional=proff;
+      this.ds.startDiscussion(this.uds.proffessional.id_proffessional, proff.id_proffessional);
+    });
   }
 }

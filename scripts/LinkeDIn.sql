@@ -38,8 +38,6 @@ CREATE TABLE IF NOT EXISTS linkeDIn.user (
   first_name VARCHAR(45) NOT NULL,
   last_name VARCHAR(45) NOT NULL,
   phone_number VARCHAR(45) NOT NULL,
-  profile_picture_dir TINYTEXT NOT NULL,
-  settings LONGTEXT NOT NULL,
   PRIMARY KEY (id_user),
   UNIQUE INDEX email_UNIQUE (email ASC) VISIBLE,
   UNIQUE INDEX phone_number_UNIQUE (phone_number ASC) VISIBLE)
