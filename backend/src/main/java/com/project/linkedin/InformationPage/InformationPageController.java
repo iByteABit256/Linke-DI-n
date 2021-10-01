@@ -37,4 +37,11 @@ public class InformationPageController {
 
         return repository.findById(id).orElseThrow(() -> new InformationPageNotFoundException(id));
     }
+
+    @GetMapping("/informationpages/user-{id}")
+    InformationPage findUserInformationpage(@PathVariable Long id) {
+
+        return repository.finduserinformationpage(id);
+    }
+
 }

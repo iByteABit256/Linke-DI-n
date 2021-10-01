@@ -29,5 +29,12 @@ export class PostService {
       this.posts = data;
     });
     return this.posts;
+
+
   }
+
+  getUserPosts(){
+    return this.http.get<Array<Post>>(this.backend_url+"/proffessional-"+this.userData.proffessional.id_proffessional, {'headers': httpOptions});
+  }
+
 }

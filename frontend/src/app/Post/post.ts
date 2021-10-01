@@ -1,4 +1,5 @@
 import { Comment } from "../Comment/comment";
+import {User} from "../User/user";
 
 export class Post{
     id_post: Number;
@@ -7,6 +8,8 @@ export class Post{
     body: String;
     dt: String;
     comments: Comment[];
+    hasCommented: User[];
+    hasLiked: User[];
     likes: Number;
     recommended: Boolean;
 
@@ -17,6 +20,8 @@ export class Post{
         this.body = body;
         this.dt = dt;
         this.comments = [];
+        this.hasCommented=[];
+        this.hasLiked=[];
         this.likes = -1;
         this.recommended = false;
     }

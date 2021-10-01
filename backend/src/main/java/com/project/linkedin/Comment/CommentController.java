@@ -1,6 +1,6 @@
 package com.project.linkedin.Comment;
 
-
+import com.project.linkedin.User.User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Query;
@@ -34,5 +34,10 @@ class CommentController {
     @GetMapping("/comments/{postid}")
     List<Comment> getComments(@PathVariable Long postid) {
         return repository.getPostComments(postid);
+    }
+
+    @GetMapping("/comments/users-{postid}")
+    List<User> getUsersFromComments(@PathVariable Long postid) {
+        return repository.getUsersWhoCommented(postid);
     }
 }

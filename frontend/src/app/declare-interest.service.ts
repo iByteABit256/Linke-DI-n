@@ -2,24 +2,29 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { httpOptions } from './httpOptions';
+import {User} from "./User/user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeclareInterestService {
-  
+
   backend_url = "http://localhost:8080/interestdeclarations"
 
   constructor(private http: HttpClient) { }
-  
+
   declareInterest(id_proffessional: Number, id_post: Number){
     this.http.post(this.backend_url, {id_proffessional, id_post}, {'headers': httpOptions}).subscribe(data => {
       console.log(data);
     });
   }
-  
+
   getLikes(id_post: Number){
     return this.http.get<Number>(this.backend_url+"/post-"+id_post, {'headers': httpOptions});
+  }
+
+  getUsersFromLikes(id_post:Number){
+    return this.http.get<Array<User>>(this.backend_url+"/users-"+id_post, {'headers': httpOptions});
   }
 
 }

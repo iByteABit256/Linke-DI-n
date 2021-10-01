@@ -1,6 +1,7 @@
 package com.project.linkedin.InterestDeclaration;
 
 
+import com.project.linkedin.User.User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Query;
@@ -42,4 +43,11 @@ public class InterestDeclarationController {
     Long getLikeAmount(@PathVariable Long id_post){
         return repository.getPostLikes(id_post);
     }
+
+    @GetMapping("interestdeclarations/users-{id_post}")
+    List<User> getUsersFromLikes(@PathVariable Long id_post){
+        return repository.getUsersWhoLiked(id_post);
+    }
+
+
 }

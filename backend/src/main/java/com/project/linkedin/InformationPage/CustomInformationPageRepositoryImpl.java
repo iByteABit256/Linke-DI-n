@@ -16,4 +16,18 @@ public class CustomInformationPageRepositoryImpl implements CustomInformationPag
     @PersistenceContext
     EntityManager entityManager;
 
+
+    @Override
+    public InformationPage finduserinformationpage(Long id_user){
+        Query q = entityManager.createQuery("SELECT i FROM InformationPage  i WHERE i.id_information_page IN(SELECT p.id_information_page FROM Proffessional p WHERE p.id_user =?1)");
+        q.setParameter(1, id_user);
+        List <InformationPage> list= q.getResultList();
+        if(list.size() == 0){
+            return null;
+        }
+
+        return list.get(0);
+
+    }
+
 }
