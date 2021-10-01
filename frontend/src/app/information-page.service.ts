@@ -15,4 +15,15 @@ export class InformationPageService {
   }
 
 
+  changeBio(ip:informationPage,newbio:String) {
+    console.log(ip, newbio);
+    return this.http.get(this.backend_url + "/biochange/" + ip.id_information_page + "/" + newbio, {'headers': httpOptions});
+  }
+
+  changeWorkExp(ip:informationPage,newworkexp:String){
+    console.log(ip,newworkexp);
+    return this.http.get(this.backend_url+"/workexpchange/"+ip.id_information_page+"/"+newworkexp, {'headers': httpOptions});
+  }
+
+
 }

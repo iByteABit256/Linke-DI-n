@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional(readOnly = false)
 public class CustomInformationPageRepositoryImpl implements CustomInformationPageRepository {
 
     @PersistenceContext
@@ -28,6 +28,23 @@ public class CustomInformationPageRepositoryImpl implements CustomInformationPag
 
         return list.get(0);
 
+    }
+
+    @Override
+    public int changeworkexperience(Long id_information_page,String newworkexp){
+        Query q = entityManager.createQuery("UPDATE InformationPage i SET i.work_experience=?2 WHERE i.id_information_page=?1");
+        q.setParameter(1, id_information_page);
+        q.setParameter(2, newworkexp);
+        return q.executeUpdate();
+
+    }
+
+    @Override
+    public int changebio(Long id_information_page,String newbio){
+        Query q = entityManager.createQuery("UPDATE InformationPage i SET i.bio=?2 WHERE i.id_information_page=?1");
+        q.setParameter(1, id_information_page);
+        q.setParameter(2, newbio);
+        return q.executeUpdate();
     }
 
 }

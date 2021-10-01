@@ -44,4 +44,17 @@ public class InformationPageController {
         return repository.finduserinformationpage(id);
     }
 
+    @GetMapping("/informationpages/biochange/{id}/{bio}")
+    int changeBio(@PathVariable Long id,@PathVariable String bio) {
+
+       return repository.changebio(id,bio);
+    }
+
+
+    @GetMapping("/informationpages/workexpchange/{id}/{workexp}")
+    int changeWorkExperience(@PathVariable Long id,@PathVariable String workexp) {
+
+        return repository.changeworkexperience(id,workexp);
+    }
+
 }
