@@ -13,9 +13,7 @@ export class DeclareInterestService {
   constructor(private http: HttpClient) { }
   
   declareInterest(id_proffessional: Number, id_post: Number){
-    this.http.post(this.backend_url, {id_proffessional, id_post}, {'headers': httpOptions}).subscribe(data => {
-      console.log(data);
-    });
+    return this.http.post(this.backend_url, {id_proffessional, id_post}, {'headers': httpOptions});
   }
   
   getLikes(id_post: Number){

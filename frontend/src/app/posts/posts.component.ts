@@ -77,17 +77,22 @@ export class PostsComponent implements OnInit {
     console.log("Created post: " + this.post);
     this.postService.createPost(this.post).subscribe(data => {
       console.log(data);
+      this.ngOnInit();
     })
   }
   
   onClickPostComment(data: any, post: Post){
     console.log(data);
     console.log(post);
-    this.cs.postComment(this.proffessional.id_proffessional, post.id_post, data.body);
+    this.cs.postComment(this.proffessional.id_proffessional, post.id_post, data.body).then(() => {
+      this.ngOnInit();
+    })
   }
   
   declareInterest(post: Post){
     console.log(post);
-    this.di.declareInterest(this.proffessional.id_proffessional, post.id_post);
+    this.di.declareInterest(this.proffessional.id_proffessional, post.id_post).subscribe(() => {
+      this.ngOnInit();
+    })
   }
 }
