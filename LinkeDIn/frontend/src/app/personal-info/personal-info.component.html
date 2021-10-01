@@ -1,0 +1,35 @@
+<h2> Personal Info </h2>
+
+<h3> Email: </h3> {{user.email}}
+<h3> First Name: </h3> {{user.first_name}}
+<h3> Last Name: </h3> {{user.last_name}}
+<h3> Phone Number: </h3> {{user.phone_number}}
+<h3>Bio:</h3>
+<h4>{{details.bio}}</h4>
+<div>
+  <form [formGroup] = "biodata" (ngSubmit) = "onClickChangeBio(biodata.value)" >
+
+    <br>
+    <input type = "text" class = "fortextbox" name = "body"
+           placeholder = "Insert Bio" formControlName = "body">
+    <br/><br/>
+
+    <input type = "submit" class = "forsubmit" value = "Change">
+
+  </form>
+</div>
+<h3>Work Experience:</h3>
+<h4>{{details.work_experience}}</h4>
+<div>
+  <form [formGroup] = "workexp" (ngSubmit) = "onClickChangeWorkExp(workexp.value)" >
+
+    <br>
+    <input type = "text" class = "fortextbox" name = "body"
+           placeholder = "Insert Work Experience" formControlName = "body">
+    <br/><br/>
+
+    <input type = "submit" class = "forsubmit" value = "Change">
+
+  </form>
+</div>
+

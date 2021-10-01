@@ -1,0 +1,42 @@
+<h3>Sign Up</h3>
+
+<div> 
+    <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+
+      Email <br>
+       <input type = "text" class = "fortextbox" name = "email" placeholder = "email" 
+          formControlName = "email">
+       <br/><br/> 
+       
+       Password <br>
+       <input type = "password" class = "fortextbox" name = "password"
+          placeholder = "password" formControlName = "password">
+       <br/><br/> 
+
+       First Name <br>
+       <input type = "text" class = "fortextbox" name = "first_name" placeholder = "first_name" 
+          formControlName = "first_name">
+       <br/><br/> 
+
+       Last Name <br>
+       <input type = "text" class = "fortextbox" name = "last_name" placeholder = "last_name" 
+          formControlName = "last_name">
+       <br/><br/> 
+
+       Phone Number <br>
+       <input type = "text" class = "fortextbox" name = "phone_number" placeholder = "phone_number" 
+          formControlName = "phone_number">
+       <br/><br/> 
+
+       <input type = "submit" class = "forsubmit" value = "Sign Up">
+
+       <div class = "error">
+          {{errorMessage}}
+       </div>
+
+       <div class = "success">
+          {{successMessage}}
+       </div>
+
+    </form>
+ </div>

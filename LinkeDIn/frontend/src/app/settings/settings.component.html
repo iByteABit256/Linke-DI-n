@@ -1,0 +1,29 @@
+<h3>Settings</h3>
+
+<div> 
+    <form [formGroup] = "emailForm" (ngSubmit) = "onClickEmail(emailForm.value)" >
+
+       Change your email address<br>
+       <input type = "text" class = "fortextbox" name = "email" placeholder = "email" 
+          formControlName = "email">
+       <br/><br/> 
+
+       <input type = "submit" class = "forsubmit" value = "Change">
+
+    </form>
+</div>
+
+<br><br>
+       
+<div>
+    <form [formGroup] = "passwordForm" (ngSubmit) = "onClickPassword(passwordForm.value)" >
+
+       Change your password <br>
+       <input type = "password" class = "fortextbox" name = "password"
+          placeholder = "password" formControlName = "password">
+       <br/><br/> 
+
+       <input type = "submit" class = "forsubmit" value = "Change">
+
+    </form>
+</div>

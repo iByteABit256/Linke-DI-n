@@ -1,0 +1,34 @@
+<h2 style="text-align: center;">Connected with you:</h2>
+
+<li *ngFor="let user of fullnames; index as i;">
+    {{user.first_name}} {{user.last_name}}
+</li>
+
+<div style="text-align: center;">
+  <div>
+    <form [formGroup] = "formdata" (ngSubmit) = "onClickSearch(formdata.value)" >
+      <br>
+      Search Name <br>
+      <input type = "searchname" class = "fortextbox" name = "searchname" placeholder = "Search"
+             formControlName = "searchname">
+      <br/><br/>
+
+
+      <input type = "submit" class = "forsubmit" value = "Search">
+
+    </form>
+  </div>
+
+  <br>
+
+  <p *ngIf="searchresults.length == 0">
+    No results.
+  </p>
+
+  <li *ngFor="let result of searchresults; index as i;">
+    <a [routerLink]="['/user-page'] " [queryParams]=" {email: result.email} " link to UserPageComponent>  <h4 style="display: inline;">{{result.first_name}} {{result.last_name}}   </h4> </a>
+    <input type = "submit" class = "forsubmit" value = "Send Request" (click)="sendConnectionRequest(result)">
+    <input type = "submit" class = "forsubmit" value = "Start Discussion" (click)="startDiscussion(result)">
+  </li>
+</div>
+

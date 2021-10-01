@@ -1,0 +1,42 @@
+<h2> Discussions </h2>
+
+<div class="grid-container">
+    <div class="discussions">
+        <h3> Discussions </h3>
+
+        <li *ngFor="let discussion of discussions">
+
+            <p style="display: inline;">{{discussion.otherUser.first_name}} {{discussion.otherUser.last_name}}   </p>
+            <input type = "submit" class = "forsubmit" value = "Open" (click)="activateDiscussion(discussion.id_discussion, discussion.otherUser)">
+            
+            <br><br><br>
+
+        </li>
+    </div>
+
+    <div class="messages">
+        <h3> Messages </h3>
+        
+        <li *ngFor="let message of messages">
+
+            <p>{{message.message}}<br></p>
+            <p *ngIf="message.id_sender != id_prof" style="margin-left: 200px">{{otherUserCurrent.first_name}} - {{message.dt}}<br></p>
+            <p *ngIf="message.id_sender == id_prof" style="margin-left: 200px">Me - {{message.dt}}<br></p>
+            
+        </li>
+        
+       <div *ngIf="messages != null">
+
+            <form [formGroup] = "formdata" (ngSubmit) = "sendMessage(formdata.value)" >
+
+               <input style="display: inline;" type = "text" class = "fortextbox" name = "Message" placeholder = "Type here" 
+                  formControlName = "message">
+
+               <input type = "submit" class = "forsubmit" value = "Send">
+               
+            </form>
+
+       </div>
+
+    </div>
+</div>

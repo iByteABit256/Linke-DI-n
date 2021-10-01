@@ -1,0 +1,40 @@
+<div style="text-align: center;">
+
+  <br>
+
+  <div>
+
+    <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+
+      Title <br>
+      <input type = "text" class = "fortextbox" name = "title" placeholder = "Title"
+             formControlName = "title">
+      <br/><br/>
+
+      Body <br>
+      <input type = "text" class = "fortextbox" name = "body"
+             placeholder = "Body" formControlName = "body">
+      <br/><br/>
+
+      <input type = "submit" class = "forsubmit" value = "Post">
+
+    </form>
+  </div>
+
+  <br><br><br>
+
+
+  <li *ngFor="let joboffer of generaljoboffers; index as i;">
+
+    <h3 style="display: inline;">{{joboffer.title}}    </h3>
+    <input type = "submit" class = "forsubmit" value = "Apply!" (click)="makeApplication(joboffer)">
+    <p>{{joboffer.body}}</p>
+
+    <p *ngIf="joboffer.applications == 1"> {{joboffer.applications}} has applied </p>
+    <p *ngIf="joboffer.applications != 1"> {{joboffer.applications}} have applied </p>
+    <h6 *ngIf="joboffer.recommended"> Recommended for you </h6>
+
+    <br>
+  </li>
+
+</div>

@@ -1,0 +1,71 @@
+<h2>Create a new post</h2>
+
+<div> 
+    <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+
+       Title <br>
+       <input type = "text" class = "fortextbox" name = "title" placeholder = "Title" 
+          formControlName = "title">
+       <br/><br/> 
+       
+       Body <br>
+       <input type = "text" class = "fortextbox" name = "body"
+          placeholder = "Body" formControlName = "body">
+       <br/><br/> 
+
+       <input type = "submit" class = "forsubmit" value = "Post">
+
+    </form>
+</div>
+
+<br><br><br>
+
+<h2>Timeline</h2> 
+<br>
+
+<p *ngIf="posts.length == 0">
+   It seems that your timeline is empty.
+   <br>
+   Create some new posts or connect with others to
+   see their posts!
+</p>
+
+<li *ngFor="let post of posts; index as i;">
+   <div>
+      <form [formGroup] = "comment_form" (ngSubmit) = "onClickPostComment(comment_form.value, post)" >
+
+         <h3 style="display: inline;">{{post.title}}    </h3>
+         
+         <input type = "submit" class = "forsubmit" value = "Interested" (click)="declareInterest(post)">
+         <p>{{post.body}}</p>
+
+         <br><br>
+
+         Comments <br>
+
+         <ul>
+            <li *ngFor="let comment of post.comments; index as j">
+               {{comment.body}}
+            </li>
+         </ul>
+         
+         <input type = "text" class = "fortextbox" name = "commentform"
+            placeholder = "" formControlName = "body">
+         <br><br>
+
+         <input type = "submit" class = "forsubmit" value = "Post">
+         <br><br>
+         
+         <p *ngIf="post.likes == 1"> {{post.likes}} is interested </p>
+         <p *ngIf="post.likes != 1"> {{post.likes}} are interested </p>
+
+         <h6> {{post.dt}} </h6>
+         <h6 *ngIf="post.recommended"> Based on your activity </h6>
+
+         <br><br>
+
+      </form>
+   </div>
+   <br><br>
+</li>
+ 
