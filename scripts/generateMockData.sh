@@ -20,10 +20,10 @@ echo "" > $scriptFile
 #! Users, Information Pages, Proffessionals, Posts
 for i in $(seq 1 $(($sizefactor*2)))
 do
-    echo "INSERT INTO user VALUES($((1+4*($i-1))), '$i@gmail.com', '$i', '$i', '$i', '$i');" >> $scriptFile
+    echo "INSERT INTO user VALUES($((1+4*($i-1))), '$i@gmail.com', '$i', 'Mr. $i', 'Johnson', '$i');" >> $scriptFile
     echo "INSERT INTO information_page VALUES($((2+4*($i-1))), '$i', '$i');" >> $scriptFile
     echo "INSERT INTO proffessional VALUES($((3+4*($i-1))), $((2+4*($i-1))), $((1+4*($i-1))));" >> $scriptFile
-    echo "INSERT INTO post VALUES($((4+4*($i-1))), $((3+4*($i-1))), '$i', '$i', '$(date +"%Y-%m-%d %H:%M:%S")');" >> $scriptFile
+    echo "INSERT INTO post VALUES($((4+4*($i-1))), $((3+4*($i-1))), 'Title $i', 'My post $i', '$(date +"%Y-%m-%d %H:%M:%S")');" >> $scriptFile
 done
 
 #! Connected, Interest Declarations, Comments, Job Offers
@@ -45,7 +45,7 @@ do
         echo "INSERT INTO comment VALUES(default, $i, $j, 'Hello world!');" >> $scriptFile
     done
 
-    echo "INSERT INTO job_offer VALUES(default, $i, 'Newborn Software Engineer', 'At least 5 years of prior experience');" >> $scriptFile
+    echo "INSERT INTO job_offer VALUES(default, $i, 'Software Engineer', 'Required Skills: Proficient with the Scratch Programming Language');" >> $scriptFile
 
 done
 
