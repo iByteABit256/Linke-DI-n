@@ -31,10 +31,9 @@ public class User {
 
     public User(Long id_user,String email, String password,
                 String first_name, String last_name,
-                String phone_number, String profile_picture_dir,
-                String settings) {
+                String phone_number){
 
-        this.id_user=id_user;
+        this.id_user = id_user;
         this.email = email;
         this.password = password;
         this.first_name = first_name;

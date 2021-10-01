@@ -22,16 +22,13 @@ export class ConnectionRequestService {
 
   acceptconnectionrequest(id_proffessionalsender:Number,id_proffessionalreceiver:Number){
     console.log("Proffessional with id "+ id_proffessionalreceiver +" accepted connection request from proffessional with id "+ id_proffessionalsender);
-    this.http.get(this.backend_url+"/accept/"+id_proffessionalreceiver + "/"+ id_proffessionalsender, {'headers': httpOptions}).subscribe(data => {
-      console.log(data);
-    });
+    return this.http.get(this.backend_url+"/accept/"+id_proffessionalreceiver + "/"+ id_proffessionalsender, {'headers': httpOptions});
 
   }
+
   rejectconnectionrequest(id_proffessionalsender:Number,id_proffessionalreceiver:Number) {
     console.log("Proffessional with id " + id_proffessionalreceiver + " rejected connection request from proffessional with id " + id_proffessionalsender);
-    this.http.get(this.backend_url + "/reject/" + id_proffessionalreceiver + "/" + id_proffessionalsender, {'headers': httpOptions}).subscribe(data => {
-      console.log(data);
-    });
+    return this.http.get(this.backend_url + "/reject/" + id_proffessionalreceiver + "/" + id_proffessionalsender, {'headers': httpOptions});
   }
 
   getconnectionrequests(id:Number){

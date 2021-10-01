@@ -35,7 +35,9 @@ export class NetworkComponent implements OnInit {
       proffessional: new FormControl(""),
     });
 
-    this.fullnames = this.gc.getUsers(this.uds.proffessional.id_proffessional);
+    this.gc.getConnected(this.uds.proffessional.id_proffessional).subscribe(data => {
+      this.fullnames = data;
+    })
   }
 
   onClickSearch(data:any){
