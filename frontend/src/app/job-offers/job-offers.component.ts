@@ -64,13 +64,15 @@ export class JobOffersComponent implements OnInit {
     this.joboffer = new JobOffer(this.proffessional.id_proffessional, data.title, data.body);
     console.log("Created job offer: " + this.joboffer);
     this.jos.createJobOffer(this.joboffer).subscribe(data => {
-      console.log(data);
+      console.log(data)
+      this.ngOnInit();
     })
   }
 
   makeApplication(joboffer: JobOffer){
     console.log(joboffer);
     this.joas.makeJobApplication(this.proffessional.id_proffessional,joboffer.id_job_offer);
+    this.ngOnInit();
   }
 
 }

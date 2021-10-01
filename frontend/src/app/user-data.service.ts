@@ -14,6 +14,9 @@ export class UserDataService {
   user: any;
   loggedIn$!: Observable<boolean>;
   proffessional: proffessional;
+  messages: any;
+  otherUserCurrent: any;
+  active_discussion: any;
   private backend_url: String = "http://localhost:8080/";
 
   constructor(private http: HttpClient) {

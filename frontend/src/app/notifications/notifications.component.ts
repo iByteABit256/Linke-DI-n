@@ -64,10 +64,12 @@ export class NotificationsComponent implements OnInit {
 
   onClickAcceptConnectionRequest(cr:ConnectionRequest){
     this.crs.acceptconnectionrequest(cr.id_proffessional1,cr.id_proffessional2);
+    this.ngOnInit();
   }
 
   onClickRejectConnectionRequest(cr:ConnectionRequest){
     this.crs.rejectconnectionrequest(cr.id_proffessional1,cr.id_proffessional2);
+    this.ngOnInit();
   }
 
   getproffessionals(){
@@ -76,10 +78,7 @@ export class NotificationsComponent implements OnInit {
         this.user=user;
         this.proffessionalswhorequested.push(this.user);
       })
-
     }
-
   }
-
 
 }

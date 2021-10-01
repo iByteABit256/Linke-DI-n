@@ -33,6 +33,13 @@ export class DiscussionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.messages = this.ud.messages; 
+    this.otherUserCurrent = this.ud.otherUserCurrent;
+    this.active_discussion = this.ud.active_discussion;
+    console.log(this.messages);
+    console.log(this.otherUserCurrent);
+    console.log(this.active_discussion);
+
     this.ds.getDiscussions(this.id_prof).subscribe(data => {
       this.discussions = data;
       
@@ -53,6 +60,9 @@ export class DiscussionsComponent implements OnInit {
       this.messages = data;
       this.otherUserCurrent = otherUser;
       this.active_discussion = id_disc;
+      this.ud.messages = data;
+      this.ud.otherUserCurrent = otherUser;
+      this.ud.active_discussion = id_disc;
     });
   }
   
@@ -60,8 +70,9 @@ export class DiscussionsComponent implements OnInit {
     console.log(data.message);
     this.ms.sendMessage(this.active_discussion, this.ud.proffessional.id_proffessional, data.message).subscribe(data => {
       console.log(data);
+      this.activateDiscussion(this.active_discussion, this.otherUserCurrent);
+      this.ngOnInit();
     });
-  
   }
-  
+ 
 }
